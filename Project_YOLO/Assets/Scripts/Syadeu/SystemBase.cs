@@ -29,4 +29,21 @@ namespace Syadeu
             m_Requests.Enqueue((TypeHelper.TypeOf<T>.Type, (other) => setter.Invoke((T)other)));
         }
     }
+    public abstract class System<T> : SystemBase where T : System<T>
+    {
+        public static T Instance => SystemInitializer.Instance.GetSystem<T>();
+    }
+
+    public sealed class StageSystem : System<StageSystem>
+    {
+        private sealed class Stage
+        {
+
+        }
+
+        public void SetupStage(params IActor[] enemies)
+        {
+
+        }
+    }
 }
