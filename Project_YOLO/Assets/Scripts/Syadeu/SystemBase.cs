@@ -33,17 +33,4 @@ namespace Syadeu
     {
         public static T Instance => SystemInitializer.Instance.GetSystem<T>();
     }
-
-    public sealed class StageSystem : System<StageSystem>
-    {
-        private sealed class Stage
-        {
-
-        }
-
-        public void SetupStage(params IActor[] enemies)
-        {
-
-        }
-    }
 }

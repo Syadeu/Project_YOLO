@@ -38,7 +38,7 @@ namespace Syadeu
             {
                 yield return new WaitForSeconds(effect.StartDelay);
 
-                GameObject fx = Object.Instantiate(effect.EffectObject);
+                GameObject fx = Object.Instantiate(effect.EffectObject, effect.LocalPosition, effect.LocalRotation, m_Actor.transform);
 
                 yield return new WaitForSeconds(effect.Duration);
 
