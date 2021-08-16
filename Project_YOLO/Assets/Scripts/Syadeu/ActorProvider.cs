@@ -1,12 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Syadeu
 {
-    public abstract class ActorProviderBase
-    {
-        public abstract ActorType ActorType { get; }
-    }
     public sealed class ActorProvider<T> : ActorProviderBase where T : MonoBehaviour, IActor
     {
         private readonly T m_Actor;
@@ -26,32 +21,6 @@ namespace Syadeu
             m_StatProvider = new StatProvider<T>(actor);
             m_SkillProvider = new SkillProvider<T>(actor);
             m_InventoryProvider = new InventoryProvider<T>(actor);
-        }
-    }
-
-    public sealed class StatProvider<T> where T : MonoBehaviour, IActor
-    {
-        private readonly T m_Actor;
-
-        private float m_HP;
-
-        public event Action<float> OnHPChanged;
-
-        public bool IsDead => m_HP <= 0;
-        public float HP
-        {
-            get => m_HP;
-            set
-            {
-                m_HP = value;
-                OnHPChanged?.Invoke(value);
-                // TODO : observer 달기
-            }
-        }
-
-        public StatProvider(T actor)
-        {
-            m_Actor = actor;
         }
     }
 }

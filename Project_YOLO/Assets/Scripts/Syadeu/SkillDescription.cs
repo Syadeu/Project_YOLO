@@ -34,28 +34,4 @@ namespace Syadeu
             m_AnimatorHash = Animator.StringToHash(m_AnimationTrigger);
         }
     }
-
-    [CreateAssetMenu(fileName = "NewActorID", menuName = "Actor/ID")]
-    public sealed class ActorID : ScriptableObject
-    {
-        [SerializeField] private ActorType m_ActorType;
-
-        public int ID { get; private set; }
-        public ActorType ActorType => m_ActorType;
-
-        private void OnEnable()
-        {
-            ID = GetHashCode();
-        }
-    }
-
-    [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialouge/Description")]
-    public sealed class DialogueDescription : ScriptableObject
-    {
-        [Serializable]
-        public sealed class Log
-        {
-
-        }
-    }
 }
