@@ -5,6 +5,8 @@ namespace Syadeu
 {
     internal sealed class YOLO_SystemGroup : PresentationGroupEntity
     {
+        public override bool StartOnInitialize => true;
+
         public override void Register()
         {
             RegisterSystem(

@@ -6,6 +6,7 @@ namespace Syadeu
     {
         public abstract ActorType ActorType { get; }
 
-        public abstract void Dispose();
+        void IDisposable.Dispose() => OnDispose();
+        protected virtual void OnDispose() { }
     }
 }

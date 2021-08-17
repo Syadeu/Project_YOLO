@@ -20,7 +20,7 @@ namespace Syadeu
         {
             for (int i = 0; i < m_Actors.Count; i++)
             {
-                m_Actors[i].Dispose();
+                ((IDisposable)m_Actors[i]).Dispose();
             }
             m_Actors.Clear();
         }
@@ -34,7 +34,7 @@ namespace Syadeu
                 throw new Exception($"ActorID 가 없는 actor({actor.name})");
             }
 
-            ActorProvider<T> provider = new ActorProvider<T>(actor);
+            ActorProvider<T> provider = new ActorProvider<T>(this, actor);
             m_Actors.Add(provider);
             return provider;
         }
