@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3f48197d31e124486b82868a4eba89, type: 3}
+  m_Name: CoreSystemSettings
+  m_EditorClassIdentifier: 
+  m_UserTagNameModule: {fileID: 0}
+  m_CustomTagNameModule: {fileID: 0}
+  m_HideSetupWizard: 0
+  m_VisualizeObjects: 0
+  m_CrashAfterException: 0
+  m_EnableAutoStaticInitialize: 0
+  m_AutoInitializeTargetAssembly:
+  - Assembly-CSharp
+  m_DisplayLogChannel: -1
+  m_PMErrorAutoFix: 1
+  m_FMODMemoryBlock: 512
+  m_EnableQueryLog: 0
+  m_UseConsole: 1
+  m_UseOnlyDevelopmentBuild: 0
+  m_ConsoleFontSize: 15
+  m_ConsoleLogTypes: 5
+  m_ConsoleLogWhenLogRecieved: 0
+  m_ConsoleLogOnlyIsDevelopment: 1
+  m_ConsoleThrowWhenErrorRecieved: 1
+  m_CommandDefinitions: []
+  m_EnableLua: 0
