@@ -1,6 +1,6 @@
 ﻿namespace Syadeu
 {
-    public interface IItem : IUnityProvider
+    public interface IItem
     {
         ItemType ItemType { get; }
     }

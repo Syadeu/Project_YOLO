@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Syadeu
 {
-    public sealed class StatProvider<T> where T : MonoBehaviour, IActor
+    public sealed class StatProvider<T> : IDisposable where T : MonoBehaviour, IActor
     {
-        private readonly T m_Actor;
+        private T m_Actor;
 
         private float m_HP;
 
@@ -26,6 +26,11 @@ namespace Syadeu
         public StatProvider(T actor)
         {
             m_Actor = actor;
+        }
+        ~StatProvider() => Dispose();
+        public void Dispose()
+        {
+            m_Actor = null;
         }
     }
 }
