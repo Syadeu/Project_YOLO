@@ -22,7 +22,7 @@ namespace Syadeu
             m_Actor = actor;
             m_StatProvider = new StatProvider<T>(actor);
             m_SkillProvider = new SkillProvider<T>(actor);
-            m_InventoryProvider = new InventoryProvider<T>(actor);
+            m_InventoryProvider = new InventoryProvider<T>(actor, this);
         }
 
         protected override void OnDispose()
