@@ -22,6 +22,10 @@ public class UIManager : MonoManager<UIManager>
         m_BoostGageUI.value = persent;
     }
 
+    public void EnableSeedGun(bool enable)
+    {
+        m_SeedGunUI.gameObject.SetActive(enable);
+    }
     /// <summary>
     /// 씨앗총의 현재 상태를 설정합니다.
     /// </summary>
