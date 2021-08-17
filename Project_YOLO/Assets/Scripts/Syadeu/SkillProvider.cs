@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Syadeu
 {
-    public sealed class SkillProvider<T> where T : MonoBehaviour, IActor
+    public sealed class SkillProvider<T> : IDisposable where T : MonoBehaviour, IActor
     {
-        private readonly T m_Actor;
-        private readonly Dictionary<string, SkillDescription> m_Skills = new Dictionary<string, SkillDescription>();
+        private T m_Actor;
+        private Dictionary<string, SkillDescription> m_Skills = new Dictionary<string, SkillDescription>();
 
         public SkillProvider(T actor)
         {
@@ -17,6 +19,14 @@ namespace Syadeu
             {
                 m_Skills.Add(actor.Skills[i].name, actor.Skills[i]);
             }
+        }
+        ~SkillProvider() => Dispose();
+        public void Dispose()
+        {
+            m_Skills.Clear();
+
+            m_Actor = null;
+            m_Skills = null;
         }
 
         public void PlaySkill(string skillName)

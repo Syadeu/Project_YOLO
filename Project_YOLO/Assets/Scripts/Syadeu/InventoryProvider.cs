@@ -1,27 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Syadeu
 {
-    public sealed class InventoryProvider<T> where T : MonoBehaviour, IActor
+    public sealed class InventoryProvider<T> : IDisposable where T : MonoBehaviour, IActor
     {
-        static Vector3 c_InitPosition = new Vector3(9999, -9999, 9999);
-
-        private readonly T m_Actor;
-        private readonly List<IItem> m_Items = new List<IItem>();
+        private T m_Actor;
+        private List<IItem> m_Items = new List<IItem>();
 
         public InventoryProvider(T actor)
         {
             m_Actor = actor;
         }
+        ~InventoryProvider() => Dispose();
+        public void Dispose()
+        {
+            m_Items.Clear();
+
+            m_Actor = null;
+            m_Items = null;
+        }
 
         public void InsertItem(IItem item)
         {
             m_Items.Add(item);
-
-            item.gameObject.SetActive(false);
-            item.transform.position = c_InitPosition;
         }
         public IItem FindAndExtract(ItemType itemType)
         {

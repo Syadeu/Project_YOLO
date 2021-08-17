@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+using Syadeu;
+using Syadeu.Presentation;
+
+public class PlayerController : MonoBehaviour, IActor
 {
     [Header("기본 정보")]
     [SerializeField] private ProjectileSeed seedProjectile;
@@ -44,11 +47,30 @@ public class PlayerController : MonoBehaviour
             return _instance;
         }
     }
-    
+
+    #region IActor
+
+    [Space(5)] [Header("IActor")]
+    [SerializeField] private ActorID m_ActorID;
+    [SerializeField] private SkillDescription[] m_Skills = Array.Empty<SkillDescription>();
+
+    private ActorProvider<PlayerController> m_ActorProvider;
+
+    public Animator Animator => animator;
+    public ActorID ActorID => m_ActorID;
+    public SkillDescription[] Skills => m_Skills;
+
+    #endregion
+
     private void Awake()
     {
         //중력 적용
         Physics.gravity = new Vector3(0, -50, 0);
+        CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
+    }
+    private void RegisterActor()
+    {
+        m_ActorProvider = PresentationSystem<YOLO_ActorSystem>.System.RegisterActor(this);
     }
 
     private void Update()
