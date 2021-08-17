@@ -211,6 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 150281185}
+  - component: {fileID: 150281186}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -234,6 +235,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &150281186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150281184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae5cf8f696116b4b876cc5e807b584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoostGageUI: {fileID: 1225229917}
+  m_SeedGunUI: {fileID: 1481383621}
+  m_BlueprintTextUI: {fileID: 1470896422}
 --- !u!1 &382050429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1613,7 @@ GameObject:
   - component: {fileID: 1481383618}
   - component: {fileID: 1481383620}
   - component: {fileID: 1481383619}
+  - component: {fileID: 1481383621}
   m_Layer: 5
   m_Name: SeedGun
   m_TagString: Untagged
@@ -1663,6 +1680,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481383617}
   m_CullTransparentMesh: 1
+--- !u!114 &1481383621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481383617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130073848edd1d34db9162e53c33e4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Contents:
+  - m_Name: "\uC528\uC557\uC5C6\uC74C"
+    m_Object: {fileID: 1252121412}
+    m_OnSelected:
+      m_PersistentCalls:
+        m_Calls: []
+    m_OnDeselected:
+      m_PersistentCalls:
+        m_Calls: []
+    m_Default: 1
+  - m_Name: "\uC528\uC557\uC788\uC74C"
+    m_Object: {fileID: 1139786585}
+    m_OnSelected:
+      m_PersistentCalls:
+        m_Calls: []
+    m_OnDeselected:
+      m_PersistentCalls:
+        m_Calls: []
+    m_Default: 0
 --- !u!1 &1627581373
 GameObject:
   m_ObjectHideFlags: 0
