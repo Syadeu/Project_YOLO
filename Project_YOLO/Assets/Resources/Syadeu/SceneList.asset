@@ -22,5 +22,7 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 47d1c40eeff4b0b4e9a13e13c2573c76, type: 3}
     scenePath: Assets/Scenes/Start.unity
   Scenes:
+  - sceneAsset: {fileID: 102900000, guid: 48322208c254faa449de371c982ab158, type: 3}
+    scenePath: Assets/CHOI.unity
   - sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
-    scenePath: Assets/Scenes/SampleScene.unity
+    scenePath: Assets/Scenes/Game.unity

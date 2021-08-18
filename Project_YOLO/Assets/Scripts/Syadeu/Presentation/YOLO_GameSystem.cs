@@ -21,6 +21,7 @@ namespace Syadeu
         public override void OnDispose()
         {
             m_EventSystem.RemoveEvent<OnItemLootEvent>(OnItemLootEventHandler);
+            m_EventSystem.RemoveEvent<OnItemDropEvent>(OnItemDropEventHandler);
         }
 
         #region Bind
@@ -29,6 +30,7 @@ namespace Syadeu
         {
             m_EventSystem = other;
             m_EventSystem.AddEvent<OnItemLootEvent>(OnItemLootEventHandler);
+            m_EventSystem.AddEvent<OnItemDropEvent>(OnItemDropEventHandler);
         }
         private void OnItemLootEventHandler(OnItemLootEvent ev)
         {
@@ -37,6 +39,16 @@ namespace Syadeu
                 if (ev.Item.ItemType == ItemType.Seed)
                 {
                     "씨앗을 얻었다!".ToLog();
+                }
+            }
+        }
+        private void OnItemDropEventHandler(OnItemDropEvent ev)
+        {
+            if ((ev.Character.ActorType & ActorType.Player) == ActorType.Player)
+            {
+                if (ev.Item.ItemType == ItemType.Seed)
+                {
+                    "씨앗을 떨궜다!".ToLog();
                 }
             }
         }
