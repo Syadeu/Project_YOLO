@@ -243,7 +243,7 @@
       "url": "https://packages.unity.com"
     },
     "syadeu.coresystem": {
-      "version": "https://github.com/Syadeu/CoreSystem.git#2.0.0-preview4",
+      "version": "https://github.com/Syadeu/CoreSystem.git#2.0.0-preview5",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -257,7 +257,7 @@
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.test-framework": "1.1.27"
       },
-      "hash": "6af01ca192674b14fe508d0856fdda61767389a3"
+      "hash": "a11e468dd691dbcdbdd726a396d43238db9fbb2e"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
