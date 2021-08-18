@@ -24,6 +24,7 @@ namespace Syadeu
             m_Items.Clear();
 
             m_Actor = null;
+            m_ActorProvider = null;
             m_Items = null;
         }
 
@@ -39,6 +40,8 @@ namespace Syadeu
             {
                 IItem item = iter.First();
                 m_Items.Remove(item);
+
+                PresentationSystem<EventSystem>.System.PostEvent(OnItemDropEvent.GetEvent(m_ActorProvider, item));
                 return item;
             }
 
