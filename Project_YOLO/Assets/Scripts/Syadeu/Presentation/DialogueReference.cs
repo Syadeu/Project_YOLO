@@ -43,7 +43,7 @@ namespace Syadeu
 
 
         [JsonIgnore] private bool m_Initialized = false;
-        [JsonIgnore] private HashSet<Hash> m_JoinedEntities;
+        [JsonIgnore] private readonly HashSet<Hash> m_JoinedEntities = new HashSet<Hash>();
 
         public void Initialize()
         {

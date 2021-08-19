@@ -24,12 +24,15 @@ namespace Syadeu
 
         protected override PresentationResult OnInitialize()
         {
-            PoolContainer<ConversationHandler>.Initialize(() => new ConversationHandler(), 1);
+            PoolContainer<ConversationHandler>.Initialize(ConversationHandlerFactory, 1);
 
             RequestSystem<EntitySystem>(Bind);
 
             return base.OnInitialize();
         }
+#pragma warning disable CS0618 // Type or member is obsolete
+        private ConversationHandler ConversationHandlerFactory() => new ConversationHandler();
+#pragma warning restore CS0618 // Type or member is obsolete
         private void Bind(EntitySystem other)
         {
             m_EntitySystem = other;
@@ -56,6 +59,8 @@ namespace Syadeu
 
                 EntityData<YOLOActorEntity> converted = EntityData<YOLOActorEntity>.GetEntityData(entity.Idx);
 
+                $"{entity.IsValid()} : {converted.IsValid()}".ToLog();
+
                 temp.actorProvider.Initialize(converted);
                 m_Actors.Add(converted);
             }
@@ -78,7 +83,7 @@ namespace Syadeu
             m_Registries.Enqueue(new RegistryPayload()
             {
                 actor = actor,
-                actorProvider = new ActorProvider<T>(this, actor)
+                actorProvider = provider
             });
             return provider;
         }

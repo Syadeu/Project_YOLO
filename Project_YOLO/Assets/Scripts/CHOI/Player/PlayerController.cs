@@ -59,9 +59,13 @@ public class PlayerController : MonoBehaviour, IActor
     [SerializeField] private ActorID m_ActorID;
     [SerializeField] private SkillDescription[] m_Skills = Array.Empty<SkillDescription>();
 
+    private ActorProvider<PlayerController> m_ActorProvider;
+
     public Animator Animator => animator;
     public ActorID ActorID => m_ActorID;
     public SkillDescription[] Skills => m_Skills;
+
+    public ActorProvider<PlayerController> ActorProvider => m_ActorProvider;
 
     #endregion
 
@@ -74,7 +78,7 @@ public class PlayerController : MonoBehaviour, IActor
     
     private void RegisterActor()
     {
-        PresentationSystem<YOLO_ActorSystem>.System.RegisterActor(this);
+        m_ActorProvider = PresentationSystem<YOLO_ActorSystem>.System.RegisterActor(this);
     }
 
     private void Update()

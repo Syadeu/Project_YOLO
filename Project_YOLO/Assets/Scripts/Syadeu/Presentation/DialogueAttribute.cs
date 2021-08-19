@@ -38,6 +38,8 @@ namespace Syadeu
         {
             for (int i = 0; i < attribute.m_Dialogues.Length; i++)
             {
+                if (attribute.m_CachedDialogues.ContainsKey(attribute.m_Dialogues[i].m_Hash)) continue;
+
                 attribute.m_CachedDialogues.Add(attribute.m_Dialogues[i].m_Hash, attribute.m_Dialogues[i].GetObject());
             }
         }

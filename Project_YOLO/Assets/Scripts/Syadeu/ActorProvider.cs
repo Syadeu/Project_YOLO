@@ -16,7 +16,7 @@ namespace Syadeu
         private InventoryProvider<T> m_InventoryProvider;
 
         private bool m_IsInitialized = false;
-        private EntityData<YOLOActorEntity> m_Entity;
+        private Hash m_Entity;
 
         public override bool IsInitialized => m_IsInitialized;
         public override EntityData<YOLOActorEntity> Entity => m_Entity;
@@ -35,12 +35,15 @@ namespace Syadeu
         }
         public override void Initialize(EntityData<YOLOActorEntity> entity)
         {
-            m_Entity = entity;
+            $"init {entity.Name}".ToLog();
+
+            m_Entity = entity.Idx;
             m_IsInitialized = true;
         }
 
         protected override void OnDispose()
         {
+            "disposed".ToLog();
             m_SkillProvider.Dispose();
             m_InventoryProvider.Dispose();
 
@@ -65,6 +68,8 @@ namespace Syadeu
 
         public bool TryConversation(DialogueID id, ActorProviderBase target, out ConversationHandler handler)
         {
+            $"{Entity.IsValid()}".ToLog();
+
             handler = null;
             if (id.AttributeHash.Equals(0))
             {
@@ -80,6 +85,17 @@ namespace Syadeu
             }
 
             DialogueReference dialogue = dialogueAtt.GetDialogues(id);
+            if (dialogue.m_Texts.Length == 0)
+            {
+                "아무 대화도 없음".ToLog();
+                return false;
+            }
+            else if (!dialogue.m_Texts[0].Principle.m_Hash.Equals(Entity.Target.Hash))
+            {
+                "대화 주체가 아님".ToLog();
+                return false;
+            }
+
             if (!dialogue.HasEntity(target.Entity.Hash))
             {
                 $"{target.Entity.Name} 은 대화({dialogue.Name})에서 할말이 없는데 대화하려함".ToLog();
@@ -90,23 +106,13 @@ namespace Syadeu
             handler.Initialize(dialogue, Entity, target.Entity);
             return true;
         }
-
-        IEnumerator ConversationIterator(DialogueReference.Text[] texts)
-        {
-            for (int i = 0; i < texts.Length; i++)
-            {
-
-
-                yield return null;
-            }
-        }
     }
 
     public sealed class ConversationHandler
     {
         private DialogueReference m_Dialogue;
         private int m_CurrentIndex = 0;
-        private EntityData<YOLOActorEntity>[] m_JoinedEntities;
+        private EntityData<YOLOActorEntity>[] m_JoinedEntities = Array.Empty<EntityData<YOLOActorEntity>>();
         private Action<EntityData<YOLOActorEntity>, string> m_OnConversation;
 
         public bool Started { get; private set; } = false;
@@ -126,6 +132,7 @@ namespace Syadeu
         {
             if (m_Dialogue.m_Texts.Length == 0)
             {
+                Terminate();
                 "대화 내용이 없네?".ToLog();
                 return;
             }
@@ -166,6 +173,17 @@ namespace Syadeu
             CurrentText = m_Dialogue.m_Texts[idx].Message;
         }
 
+        private void Terminate()
+        {
+            Started = false;
+            m_Dialogue = null;
+            CurrentText = string.Empty;
+            m_CurrentIndex = 0;
+            m_JoinedEntities = Array.Empty<EntityData<YOLOActorEntity>>();
+            m_OnConversation = null;
+            PoolContainer<ConversationHandler>.Enqueue(this);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -175,7 +193,7 @@ namespace Syadeu
             m_CurrentIndex++;
             if (m_CurrentIndex.Equals(m_Dialogue.m_Texts.Length))
             {
-                Started = false;
+                Terminate();
                 return false;
             }
 
