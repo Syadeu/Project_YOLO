@@ -5,6 +5,7 @@ namespace Syadeu
 {
     public abstract class ActorProviderBase : ProviderBase, IDisposable
     {
+        public abstract bool IsInitialized { get; }
         public abstract EntityData<YOLOActorEntity> Entity { get; }
 
         public abstract void Initialize(EntityData<YOLOActorEntity> entity);

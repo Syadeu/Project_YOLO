@@ -16,7 +16,7 @@ namespace Syadeu
         public override bool EnableAfterPresentation => false;
 
         private readonly Queue<RegistryPayload> m_Registries = new Queue<RegistryPayload>();
-        private readonly List<ActorProviderBase> m_Actors = new List<ActorProviderBase>();
+        private readonly List<EntityData<YOLOActorEntity>> m_Actors = new List<EntityData<YOLOActorEntity>>();
         
         private EntitySystem m_EntitySystem;
 
@@ -24,6 +24,8 @@ namespace Syadeu
 
         protected override PresentationResult OnInitialize()
         {
+            PoolContainer<ConversationHandler>.Initialize(() => new ConversationHandler(), 1);
+
             RequestSystem<EntitySystem>(Bind);
 
             return base.OnInitialize();
@@ -36,7 +38,7 @@ namespace Syadeu
         {
             for (int i = 0; i < m_Actors.Count; i++)
             {
-                ((IDisposable)m_Actors[i]).Dispose();
+                m_Actors[i].Destroy();
             }
             m_Actors.Clear();
 
@@ -55,7 +57,7 @@ namespace Syadeu
                 EntityData<YOLOActorEntity> converted = EntityData<YOLOActorEntity>.GetEntityData(entity.Idx);
 
                 temp.actorProvider.Initialize(converted);
-                m_Actors.Add(temp.actorProvider);
+                m_Actors.Add(converted);
             }
 
             return base.BeforePresentation();
@@ -63,20 +65,22 @@ namespace Syadeu
 
         #endregion
 
-        public void RegisterActor<T>(T actor) where T : MonoBehaviour, IActor
+        public ActorProvider<T> RegisterActor<T>(T actor) where T : MonoBehaviour, IActor
         {
             if (actor.ActorID == null)
             {
                 CoreSystem.Logger.LogError(Channel.Presentation,
                     $"ActorID 가 없는 actor({actor.name})");
-                return;
+                return null;
             }
 
+            ActorProvider<T> provider = new ActorProvider<T>(this, actor);
             m_Registries.Enqueue(new RegistryPayload()
             {
                 actor = actor,
                 actorProvider = new ActorProvider<T>(this, actor)
             });
+            return provider;
         }
 
         #region Inner Classes
