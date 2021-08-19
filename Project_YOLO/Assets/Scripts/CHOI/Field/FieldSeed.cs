@@ -13,8 +13,8 @@ public class FieldSeed : MonoBehaviour, IItem
         if (!other.gameObject.CompareTag("Player")) return;
         if (PlayerController.instance.haveSeed) return;
         
-        PlayerController.instance.InsertItem(this);
-        //Destroy(gameObject);
+        PlayerController.instance.SetSeedStatus(true);
+        Destroy(gameObject);
     }
 }
 
