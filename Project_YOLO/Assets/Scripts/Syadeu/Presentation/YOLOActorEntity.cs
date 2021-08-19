@@ -6,8 +6,6 @@ namespace Syadeu
     {
         [JsonProperty(Order = 0, PropertyName = "Type")] private ActorType m_ActorType;
 
-        [JsonIgnore] internal ActorProviderBase m_ActorProvider;
-
         public ActorType ActorType => m_ActorType;
     }
 }

@@ -3,6 +3,7 @@ using Syadeu.Database;
 using Syadeu.Internal;
 using Syadeu.Presentation;
 using Syadeu.Presentation.Attributes;
+using Syadeu.Presentation.Entities;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,9 @@ namespace Syadeu
             [ReflectionDescription("말하는 주체")]
             public Reference<YOLOActorEntity> Principle;
             public string Message = string.Empty;
+
+            [Space]
+            public Reference<ActionBase>[] Action = Array.Empty<Reference<ActionBase>>();
 
             [Space]
             [ReflectionDescription("활성화시 Delay 만큼 기다린후 다음 대화로 자동으로 넘어감")]
@@ -59,5 +63,24 @@ namespace Syadeu
             m_Initialized = true;
         }
         public bool HasEntity(Hash entityHash) => m_JoinedEntities.Contains(entityHash);
+    }
+
+    public sealed class AnimationTriggerAction : ActionBase
+    {
+        [JsonProperty] public string TriggerKey;
+
+        public override void Process(EntityData<IEntityData> e)
+        {
+            ActorProviderAttribute provider = e.GetAttribute<ActorProviderAttribute>();
+            if (provider == null)
+            {
+                "provider 가ㅣ 없음".ToLog();
+                return;
+            }
+
+
+            //YOLOActorEntity entity = (YOLOActorEntity)e.Target;
+            provider.m_ActorProvider.Animator.SetTrigger(TriggerKey);
+        }
     }
 }

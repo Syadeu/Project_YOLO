@@ -11,10 +11,7 @@ namespace Syadeu
     [AttributeAcceptOnly(typeof(YOLOActorEntity))]
     public sealed class DialogueAttribute : AttributeBase
     {
-        [JsonProperty(Order = 0, PropertyName = "TargetEntity")]
-        public Reference<YOLOActorEntity> m_TargetEntity;
-
-        [JsonProperty(Order = 1, PropertyName = "Dialogues")]
+        [JsonProperty(Order = 0, PropertyName = "Dialogues")]
         public Reference<DialogueReference>[] m_Dialogues = Array.Empty<Reference<DialogueReference>>();
 
         [JsonIgnore] internal readonly Dictionary<Hash, DialogueReference> m_CachedDialogues = new Dictionary<Hash, DialogueReference>();

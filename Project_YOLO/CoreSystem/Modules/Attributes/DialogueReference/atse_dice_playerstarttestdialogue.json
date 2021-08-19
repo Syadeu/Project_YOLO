@@ -6,6 +6,7 @@
       "Culture": 1,
       "Principle": 3407605770480729199,
       "Message": "1초 기다리자",
+      "Action": [],
       "EnableAuto": true,
       "Delay": 1.0
     },
@@ -13,6 +14,7 @@
       "Culture": 1,
       "Principle": 3407605770480729199,
       "Message": "1초 끝 다음 누구냐",
+      "Action": [],
       "EnableAuto": false,
       "Delay": 0.0
     },
@@ -20,6 +22,7 @@
       "Culture": 1,
       "Principle": 7785164833589502067,
       "Message": "바로나!",
+      "Action": [],
       "EnableAuto": false,
       "Delay": 0.0
     }

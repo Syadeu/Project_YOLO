@@ -1,5 +1,6 @@
 ﻿using Syadeu.Presentation.Entities;
 using System;
+using UnityEngine;
 
 namespace Syadeu
 {
@@ -7,6 +8,7 @@ namespace Syadeu
     {
         public abstract bool IsInitialized { get; }
         public abstract EntityData<YOLOActorEntity> Entity { get; }
+        public abstract Animator Animator { get; }
 
         public abstract void Initialize(EntityData<YOLOActorEntity> entity);
 

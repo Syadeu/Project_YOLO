@@ -59,7 +59,7 @@ namespace Syadeu
 
                 EntityData<YOLOActorEntity> converted = EntityData<YOLOActorEntity>.GetEntityData(entity.Idx);
 
-                $"{entity.IsValid()} : {converted.IsValid()}".ToLog();
+                converted.GetAttribute<ActorProviderAttribute>().m_ActorProvider = temp.actorProvider;
 
                 temp.actorProvider.Initialize(converted);
                 m_Actors.Add(converted);
