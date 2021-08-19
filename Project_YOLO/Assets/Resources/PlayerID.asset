@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerID
   m_EditorClassIdentifier: 
   m_ActorType: 1
+  m_HP: 100

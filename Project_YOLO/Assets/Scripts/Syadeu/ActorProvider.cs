@@ -14,6 +14,7 @@ namespace Syadeu
 
         public StatProvider<T> StatProvider => m_StatProvider;
         public SkillProvider<T> SkillProvider => m_SkillProvider;
+        // 그럼 이놈으로 연결되는데
         public InventoryProvider<T> InventoryProvider => m_InventoryProvider;
 
         public ActorProvider(YOLO_ActorSystem system, T actor)
