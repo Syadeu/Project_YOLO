@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Syadeu.Presentation.Entities;
+using UnityEngine;
 
 namespace Syadeu
 {
@@ -9,12 +10,14 @@ namespace Syadeu
         private StatProvider<T> m_StatProvider;
         private SkillProvider<T> m_SkillProvider;
         private InventoryProvider<T> m_InventoryProvider;
+        private DialogueProvider<T> m_DialogueProvider;
 
-        public override ActorType ActorType => m_Actor.ActorID.ActorType;
+        private EntityData<YOLOActorEntity> m_Entity;
+
+        public override EntityData<YOLOActorEntity> Entity => m_Entity;
 
         public StatProvider<T> StatProvider => m_StatProvider;
         public SkillProvider<T> SkillProvider => m_SkillProvider;
-        // 그럼 이놈으로 연결되는데
         public InventoryProvider<T> InventoryProvider => m_InventoryProvider;
 
         public ActorProvider(YOLO_ActorSystem system, T actor)
@@ -24,6 +27,10 @@ namespace Syadeu
             m_StatProvider = new StatProvider<T>(actor);
             m_SkillProvider = new SkillProvider<T>(actor);
             m_InventoryProvider = new InventoryProvider<T>(actor, this);
+        }
+        public override void Initialize(EntityData<YOLOActorEntity> entity)
+        {
+            m_Entity = entity;
         }
 
         protected override void OnDispose()
