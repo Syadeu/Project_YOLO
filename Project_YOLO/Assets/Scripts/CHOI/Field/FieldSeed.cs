@@ -10,7 +10,7 @@ public class FieldSeed : MonoBehaviour
         if (!other.gameObject.CompareTag("Player")) return;
         if (PlayerController.instance.haveSeed) return;
         
-        PlayerController.instance.SeedAcquisition();
+        PlayerController.instance.SetSeedStatus(true);
         Destroy(gameObject);
     }
 }

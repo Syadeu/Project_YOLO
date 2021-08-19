@@ -12,13 +12,11 @@ public class UIManager : MonoManager<UIManager>
     [SerializeField] private Text m_BlueprintTextUI;
 
     /// <summary>
-    /// UI ÀÇ ºÎ½ºÆ® °ÔÀÌÁö ÆÛ¼¾Æ®¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// UI ì˜ ë¶€ìŠ¤íŠ¸ ê²Œì´ì§€ í¼ì„¼íŠ¸ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="persent">0 ~ 100%</param>
+    /// <param name="persent">0 ~ 1%</param>
     public void SetBoostGage(float persent)
     {
-        persent *= 0.01f;
-
         m_BoostGageUI.value = persent;
     }
 
@@ -27,9 +25,9 @@ public class UIManager : MonoManager<UIManager>
         m_SeedGunUI.gameObject.SetActive(enable);
     }
     /// <summary>
-    /// ¾¾¾ÑÃÑÀÇ ÇöÀç »óÅÂ¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ì”¨ì•—ì´ì˜ í˜„ì¬ ìƒíƒœë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="hasSeed">¾¾¾Ñ ÃÑ¾ËÀÌ ÀÖ³ª¿ä?</param>
+    /// <param name="hasSeed">ì”¨ì•— ì´ì•Œì´ ìˆë‚˜ìš”?</param>
     public void SetSeedGun(bool hasSeed)
     {
         if (hasSeed) m_SeedGunUI.On(1);
