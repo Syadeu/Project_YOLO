@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IActor
     [SerializeField] private bool isDashing;
 
     [Space(5)] [Header("공격")]
-    [SerializeField] public bool haveSeed;
+    [Obsolete][SerializeField] public bool haveSeed;
     
     [Space(5)] [Header("애니메이션")]
     [SerializeField] private Animator animator;
@@ -172,11 +172,18 @@ public class PlayerController : MonoBehaviour, IActor
         Instantiate(seedProjectile, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), transform.rotation);
     }
 
+    [Obsolete]
     public void SeedAcquisition()
     {
         haveSeed = true;
+        
     }
-    
+    public void InsertItem(IItem item)
+    {
+        // 이제 이 함수로 들어와서 Actor에 들어갑니다.
+        m_ActorProvider.InventoryProvider.InsertItem(item);
+    }
+
     public void BoosterAcquisition()
     {
         haveBooster = true;

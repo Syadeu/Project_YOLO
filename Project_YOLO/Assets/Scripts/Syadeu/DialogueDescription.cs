@@ -9,7 +9,10 @@ namespace Syadeu
         [Serializable]
         public sealed class Log
         {
-
+            public ActorID From;
+            public string[] m_Description;
         }
+
+        public Log[] m_Logs = Array.Empty<Log>();
     }
 }

@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public sealed class Test : StaticManager<Test>
+{
+    public override bool HideInHierarchy => false;
+}
+
 public class UIManager : MonoManager<UIManager>
 {
     [SerializeField] private Slider m_BoostGageUI;
@@ -18,7 +23,6 @@ public class UIManager : MonoManager<UIManager>
     public void SetBoostGage(float persent)
     {
         persent *= 0.01f;
-
         m_BoostGageUI.value = persent;
     }
 
