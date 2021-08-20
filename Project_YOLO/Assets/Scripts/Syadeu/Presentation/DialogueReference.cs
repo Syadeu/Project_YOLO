@@ -32,7 +32,7 @@ namespace Syadeu
             public string Message = string.Empty;
 
             [Space]
-            public Reference<ActionBase>[] Action = Array.Empty<Reference<ActionBase>>();
+            public Reference<YOLOActionBase>[] Actions;
 
             [Space]
             [ReflectionDescription("활성화시 Delay 만큼 기다린후 다음 대화로 자동으로 넘어감")]
@@ -65,7 +65,7 @@ namespace Syadeu
         public bool HasEntity(Hash entityHash) => m_JoinedEntities.Contains(entityHash);
     }
 
-    public sealed class AnimationTriggerAction : ActionBase
+    public sealed class AnimationTriggerAction : YOLOActionBase
     {
         [JsonProperty] public string TriggerKey;
 

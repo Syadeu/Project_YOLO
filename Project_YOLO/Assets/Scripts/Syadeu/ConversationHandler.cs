@@ -71,9 +71,9 @@ namespace Syadeu
             CoreSystem.Logger.False(CurrentSpeaker.Equals(EntityData<YOLOActorEntity>.Empty), nameof(StartConversation));
             CurrentText = currentText.Message;
 
-            for (int i = 0; i < currentText.Action.Length; i++)
+            for (int i = 0; i < currentText.Actions.Length; i++)
             {
-                currentText.Action[i].GetObject().Process(CurrentSpeaker);
+                currentText.Actions[i].GetObject().Process(CurrentSpeaker);
             }
         }
 

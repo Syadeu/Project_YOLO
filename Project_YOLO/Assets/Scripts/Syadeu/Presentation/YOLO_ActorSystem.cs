@@ -56,7 +56,6 @@ namespace Syadeu
                 RegistryPayload temp = m_Registries.Dequeue();
 
                 EntityData<IEntityData> entity = m_EntitySystem.CreateObject(temp.actor.ActorID.EntityHash);
-
                 EntityData<YOLOActorEntity> converted = EntityData<YOLOActorEntity>.GetEntityData(entity.Idx);
 
                 converted.GetAttribute<ActorProviderAttribute>().m_ActorProvider = temp.actorProvider;
