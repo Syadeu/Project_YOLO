@@ -34,7 +34,7 @@ namespace Syadeu
         }
         private void OnItemLootEventHandler(OnItemLootEvent ev)
         {
-            if ((ev.Character.ActorType & ActorType.Player) == ActorType.Player)
+            if ((ev.Character.Entity.Target.ActorType & ActorType.Player) == ActorType.Player)
             {
                 if (ev.Item.ItemType == ItemType.Seed)
                 {
@@ -44,7 +44,7 @@ namespace Syadeu
         }
         private void OnItemDropEventHandler(OnItemDropEvent ev)
         {
-            if ((ev.Character.ActorType & ActorType.Player) == ActorType.Player)
+            if ((ev.Character.Entity.Target.ActorType & ActorType.Player) == ActorType.Player)
             {
                 if (ev.Item.ItemType == ItemType.Seed)
                 {

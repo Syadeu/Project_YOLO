@@ -2,9 +2,7 @@
   "Name": "UI",
   "Hash": 3300077805512239964,
   "Attributes": [],
-  "Prefab": {
-    "m_Idx": 0
-  },
+  "Prefab": 0,
   "Center": [
     0.0,
     0.0,

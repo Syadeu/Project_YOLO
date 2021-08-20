@@ -1,0 +1,27 @@
+{
+  "Name": "ManagerDataSet",
+  "Hash": 4814226343547059703,
+  "Attributes": [],
+  "Objects": [
+    {
+      "Object": 3300077805512239964,
+      "Translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "Rotation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "EnableCull": false
+    }
+  ]
+}
