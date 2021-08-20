@@ -60,7 +60,6 @@ namespace Syadeu
             return true;
         }
     }
-
     internal sealed class DialogueProcessor : AttributeProcessor<DialogueAttribute>
     {
         protected override void OnCreated(DialogueAttribute attribute, EntityData<IEntityData> entity)

@@ -24,6 +24,8 @@ namespace Syadeu
 
         protected override PresentationResult OnInitialize()
         {
+            YOLOPresentationProvider.Instance.GameSystem = this;
+
             RequestSystem<EventSystem>(Bind);
             RequestSystem<YOLO_ActorSystem>(Bind);
 
@@ -110,18 +112,69 @@ namespace Syadeu
         private IEnumerator ConversationUpdate(ConversationHandler handler)
         {
             IsInConversation = true;
-            handler.StartConversation(Conversation);
+            float timer = 0;
+
+            handler.StartConversation(Conversation, out float delay);
+
+            while (timer < delay)
+            {
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    "skip".ToLog();
+                    break;
+                }
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            if (delay > 0 && timer > 0)
+            {
+                if (!handler.MoveNext(out delay))
+                {
+                    "대화 끝".ToLog();
+                    IsInConversation = false;
+                    yield break;
+                }
+            }
+
+            timer = 0;
 
             while (true)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    if (!handler.MoveNext())
+                    if (!handler.MoveNext(out delay))
                     {
                         "대화 끝".ToLog();
                         IsInConversation = false;
                         yield break;
                     }
+                    timer = 0;
+                }
+
+                while (timer < delay)
+                {
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        "skip".ToLog();
+                        break;
+                    }
+
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
+
+                if (delay > 0 && timer > 0)
+                {
+                    if (!handler.MoveNext(out delay))
+                    {
+                        "대화 끝".ToLog();
+                        IsInConversation = false;
+                        yield break;
+                    }
+
+                    timer = 0;
                 }
 
                 yield return null;

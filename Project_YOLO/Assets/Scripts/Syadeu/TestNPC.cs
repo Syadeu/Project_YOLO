@@ -30,7 +30,7 @@ namespace Syadeu
                 yield return null;
             }
 
-            PresentationSystem<YOLO_GameSystem>.System.StartConversation(m_DialogueID, ActorProvider.Entity);
+            YOLOPresentationProvider.Instance.GameSystem.StartConversation(m_DialogueID, ActorProvider.Entity);
 
             //ActorProvider.TryConversation(m_DialogueID, out var handler, PlayerController.ActorProvider.Entity);
 

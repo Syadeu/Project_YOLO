@@ -1,7 +1,9 @@
 {
-  "Name": "UI",
+  "Name": "UIManager",
   "Hash": 3300077805512239964,
-  "Attributes": [],
+  "Attributes": [
+    3080442841258578701
+  ],
   "Prefab": 0,
   "Center": [
     0.0,

@@ -25,7 +25,6 @@ namespace Syadeu
         [Serializable]
         public sealed class Text
         {
-            public Culture Culture = Culture.Korean;
             [ReflectionDescription("말하는 주체")]
             public Reference<YOLOActorEntity> Principle;
             public string[] Messages = Array.Empty<string>();
@@ -41,9 +40,9 @@ namespace Syadeu
         }
 
         [ReflectionDescription("0번째 인덱스는 무조건 대화를 시작하는 주체입니다")]
-        [JsonProperty(PropertyName = "Texts")]
-        public Text[] m_Texts = Array.Empty<Text>();
-        public bool IsMoveable = false;
+        [JsonProperty(PropertyName = "Texts")] public Text[] m_Texts = Array.Empty<Text>();
+        [JsonProperty] public bool IsMoveable = false;
+        [JsonProperty] public Reference<YOLOActionBase>[] OnEndofDialogueActions = Array.Empty<Reference<YOLOActionBase>>();
 
         [JsonIgnore] private bool m_Initialized = false;
         [JsonIgnore] private readonly HashSet<Hash> m_JoinedEntities = new HashSet<Hash>();

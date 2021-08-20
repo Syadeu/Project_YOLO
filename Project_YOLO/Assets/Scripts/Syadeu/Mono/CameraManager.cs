@@ -34,6 +34,7 @@ namespace Syadeu.Mono
 
         private CameraTarget m_CamTarget;
 
+        public Camera Camera => m_Camera;
         public CameraTarget CurrentTarget => m_CamTarget;
 
         public override void OnInitialize()
