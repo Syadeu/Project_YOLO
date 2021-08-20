@@ -238,7 +238,6 @@ public class PlayerController : MonoBehaviour, IActor
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                Debug.Log("dd");
                 boosterAvailable = false;
                 
                 _maxVelocity = 15;

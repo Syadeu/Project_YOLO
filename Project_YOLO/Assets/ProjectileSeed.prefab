@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3395332518582411331}
   - component: {fileID: 3291574568559463349}
   - component: {fileID: 3301952691540852799}
+  - component: {fileID: 2639215881828663241}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -4825,6 +4826,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2639215881828663241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3392468191747065955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12bd5bfd653f7346a38fa5592df7785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destoyTime: 2
 --- !u!1 &3392496572621496423
 GameObject:
   m_ObjectHideFlags: 0
