@@ -1,6 +1,8 @@
-﻿using Syadeu.Presentation;
+﻿using Syadeu.Mono;
+using Syadeu.Presentation;
 using Syadeu.Presentation.Entities;
 using Syadeu.Presentation.Events;
+using Syadeu.Presentation.Render;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +15,15 @@ namespace Syadeu
         public override bool EnableOnPresentation => false;
         public override bool EnableAfterPresentation => false;
 
+        public override bool IsStartable
+        {
+            get
+            {
+                if (!CameraManager.HasInstance) return false;
+                return true;
+            }
+        }
+
         public EntityData<YOLOActorEntity> Player => m_YOLOActorSystem.Player;
         public ActorProviderAttribute PlayerProviderAttribute => Player.GetAttribute<ActorProviderAttribute>();
         public DialogueAttribute PlayerDialogueAttribute => Player.GetAttribute<DialogueAttribute>();
@@ -20,13 +31,16 @@ namespace Syadeu
         public bool IsInConversation { get; private set; } = false;
 
         private EventSystem m_EventSystem;
+        private RenderSystem m_RenderSystem;
         private YOLO_ActorSystem m_YOLOActorSystem;
 
+        #region Presentation Methods
         protected override PresentationResult OnInitialize()
         {
             YOLOPresentationProvider.Instance.GameSystem = this;
 
             RequestSystem<EventSystem>(Bind);
+            RequestSystem<RenderSystem>(Bind);
             RequestSystem<YOLO_ActorSystem>(Bind);
 
             return base.OnInitialize();
@@ -37,10 +51,16 @@ namespace Syadeu
             m_EventSystem.RemoveEvent<OnItemDropEvent>(OnItemDropEventHandler);
 
             m_EventSystem = null;
+            m_RenderSystem = null;
             m_YOLOActorSystem = null;
         }
 
         #region Bind
+
+        private void Bind(RenderSystem other)
+        {
+            m_RenderSystem = other;
+        }
 
         private void Bind(EventSystem other)
         {
@@ -72,6 +92,15 @@ namespace Syadeu
         private void Bind(YOLO_ActorSystem other)
         {
             m_YOLOActorSystem = other;
+        }
+
+        #endregion
+
+        protected override PresentationResult OnStartPresentation()
+        {
+            m_RenderSystem.Camera = CameraManager.Instance.Camera;
+
+            return base.OnStartPresentation();
         }
 
         #endregion
