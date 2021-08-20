@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("기본 정보")]
     [SerializeField] private ProjectileSeed seedProjectile;
     [SerializeField] private new Rigidbody rigidbody;
+    [SerializeField] private new Collider collider;
     private float _maxVelocity;
     
     [Space(5)] [Header("이동")]
@@ -22,12 +23,14 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
     [SerializeField] private bool isJumping;
+    [SerializeField] private bool isDownJumping;
     
     [Space(5)] [Header("부스터")] 
     public bool haveBooster;
     [SerializeField] private float boosterPower;
     [SerializeField] private float boosterCooltime;
     [SerializeField] private bool boosterAvailable;
+    [SerializeField] private GameObject boosterEffect;
 
     [Space(5)] [Header("공격")]
     public bool haveSeed;
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour, IActor
     private void Awake()
     {
         //중력 적용
-        Physics.gravity = new Vector3(0, -50, 0);
+        Physics.gravity = new Vector3(0, -35, 0);
         CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
     }
     
@@ -152,14 +155,42 @@ public class PlayerController : MonoBehaviour, IActor
     {
         if (!Input.GetKeyDown(KeyCode.Space)) return;
         if (isJumping) return;
+
+        //밑 점프 체크
+        if (!Input.GetKey(KeyCode.DownArrow))
+        {
+            animator.Play("Jump");
         
-        animator.Play("Jump");
+            isJumping = true;
         
-        isJumping = true;
-        
-        _maxVelocity = 15;
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            _maxVelocity = 15;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
+        else
+        {
+            DownJump();
+        }
+    }
+
+    public void CollisionException(bool enabled)
+    {
+        collider.enabled = !enabled;
+    }
+
+    private void DownJump()
+    {
+        isDownJumping = true;
+        CollisionException(true);
+    }
+    
+    public void DownJumpEnd()
+    {
+        if (isDownJumping)
+        {
+            isDownJumping = false;
+            CollisionException(false);
+        }
     }
     
     private void Dash()
@@ -183,6 +214,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.AddForce(Vector3.left * boosterPower, ForceMode.Impulse);
             }
+
+            //부스터 이펙트
+            BoosterEffect();
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -199,6 +233,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.AddForce(Vector3.right * boosterPower, ForceMode.Impulse);
             }
+            
+            //부스터 이펙트
+            BoosterEffect();
         }
         else
         {
@@ -209,6 +246,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.AddForce(new Vector3(0, 1, 0) * (boosterPower * 1.3f), ForceMode.Impulse);
+                
+                //부스터 이펙트
+                BoosterEffect();
             }
         }
 
@@ -217,6 +257,13 @@ public class PlayerController : MonoBehaviour, IActor
             //쿨타임 시작
             StartCoroutine(BoosterCooltime());
         }
+    }
+
+    private void BoosterEffect()
+    {
+        //이펙트
+        boosterEffect.gameObject.SetActive(false);
+        boosterEffect.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -248,7 +295,7 @@ public class PlayerController : MonoBehaviour, IActor
     public void BoosterAcquisition()
     {
         haveBooster = true;
-        boosterAvailable = true;
+        BoosterAvailable();
     }
 
     /// <summary>

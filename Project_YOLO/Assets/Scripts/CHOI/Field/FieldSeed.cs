@@ -12,11 +12,12 @@ public class FieldSeed : MonoBehaviour, IItem
     {
         if (!other.gameObject.CompareTag("Player")) return;
         if (PlayerController.instance.haveSeed) return;
+        if (!other.isTrigger) return;
         
         PlayerController.instance.SetSeedStatus(true);
         Destroy(gameObject);
     }
 }
 
-// ÀÌ°É·Î ¾¾¾Ñ ¾ò°í ÇÏ½Ã´Â°Í °°Àºµ¥, ÆÄ±«ÇÏÁö¸»°í ÀÎÅÍÆäÀÌ½º ´Þ°í »ç¿ëÇÏ½Ã¸é µÉ°Å°°¾Æ¿ä
-// ÀÌ·±½ÄÀ¸·Î¿ä
+// ï¿½Ì°É·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï½Ã´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Þ°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¸ï¿½ ï¿½É°Å°ï¿½ï¿½Æ¿ï¿½
+// ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½

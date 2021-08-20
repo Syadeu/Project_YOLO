@@ -11,5 +11,6 @@ public class CameraTrigger : MonoBehaviour
         if (!other.gameObject.CompareTag("Player")) return;
         
         CameraController.instance.SetPosition(cameraPosition);
+        Destroy(gameObject);
     }
 }
