@@ -39,10 +39,10 @@ namespace Syadeu
 
             m_OnConversation.Invoke(CurrentSpeaker, CurrentText);
 
-            if (m_Dialogue.m_Texts[0].EnableAuto)
-            {
-                CoreSystem.WaitInvoke(m_Dialogue.m_Texts[0].Delay, InternalMoveNext);
-            }
+            //if (m_Dialogue.m_Texts[0].EnableAuto)
+            //{
+            //    CoreSystem.WaitInvoke(m_Dialogue.m_Texts[0].Delay, InternalMoveNext);
+            //}
 
             Started = true;
         }
@@ -76,7 +76,8 @@ namespace Syadeu
                 return;
             }
 
-            CurrentText = currentText.Message;
+            int textIdx = UnityEngine.Random.Range(0, currentText.Messages.Length);
+            CurrentText = currentText.Messages[textIdx];
 
             for (int i = 0; i < currentText.Actions?.Length; i++)
             {

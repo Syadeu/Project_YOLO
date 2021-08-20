@@ -5,26 +5,29 @@
     {
       "Culture": 1,
       "Principle": 3407605770480729199,
-      "Message": "1초 기다리자",
-      "Action": [],
+      "Messages": [],
+      "Actions": [
+        6780887558557279084
+      ],
       "EnableAuto": true,
       "Delay": 1.0
     },
     {
       "Culture": 1,
       "Principle": 3407605770480729199,
-      "Message": "1초 끝 다음 누구냐",
-      "Action": [],
+      "Messages": [],
+      "Actions": [],
       "EnableAuto": false,
       "Delay": 0.0
     },
     {
       "Culture": 1,
       "Principle": 7785164833589502067,
-      "Message": "바로나!",
-      "Action": [],
+      "Messages": [],
+      "Actions": [],
       "EnableAuto": false,
       "Delay": 0.0
     }
-  ]
+  ],
+  "IsMoveable": false
 }

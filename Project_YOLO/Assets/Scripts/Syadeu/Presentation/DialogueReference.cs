@@ -3,7 +3,6 @@ using Syadeu.Database;
 using Syadeu.Internal;
 using Syadeu.Presentation;
 using Syadeu.Presentation.Attributes;
-using Syadeu.Presentation.Entities;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Syadeu
             public Culture Culture = Culture.Korean;
             [ReflectionDescription("말하는 주체")]
             public Reference<YOLOActorEntity> Principle;
-            public string Message = string.Empty;
+            public string[] Messages = Array.Empty<string>();
 
             [Space]
             public Reference<YOLOActionBase>[] Actions = Array.Empty<Reference<YOLOActionBase>>();
@@ -44,7 +43,7 @@ namespace Syadeu
         [ReflectionDescription("0번째 인덱스는 무조건 대화를 시작하는 주체입니다")]
         [JsonProperty(PropertyName = "Texts")]
         public Text[] m_Texts = Array.Empty<Text>();
-
+        public bool IsMoveable = false;
 
         [JsonIgnore] private bool m_Initialized = false;
         [JsonIgnore] private readonly HashSet<Hash> m_JoinedEntities = new HashSet<Hash>();
@@ -63,24 +62,5 @@ namespace Syadeu
             m_Initialized = true;
         }
         public bool HasEntity(Hash entityHash) => m_JoinedEntities.Contains(entityHash);
-    }
-
-    public sealed class AnimationTriggerAction : YOLOActionBase
-    {
-        [JsonProperty] public string TriggerKey;
-
-        public override void Process(EntityData<IEntityData> e)
-        {
-            ActorProviderAttribute provider = e.GetAttribute<ActorProviderAttribute>();
-            if (provider == null)
-            {
-                "provider 가ㅣ 없음".ToLog();
-                return;
-            }
-
-
-            //YOLOActorEntity entity = (YOLOActorEntity)e.Target;
-            provider.m_ActorProvider.Animator.SetTrigger(TriggerKey);
-        }
     }
 }
