@@ -6,7 +6,7 @@ public class BodyTrigger : MonoBehaviour
 {
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("Floor")) return;
+        if (!other.gameObject.CompareTag("PassFloor")) return;
         
         PlayerController.instance.CollisionEnable(true);
     }
