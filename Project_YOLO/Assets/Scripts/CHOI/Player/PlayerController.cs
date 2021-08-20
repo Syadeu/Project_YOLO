@@ -8,13 +8,14 @@ using Syadeu.Presentation;
 
 public class PlayerController : MonoBehaviour, IActor
 {
-    [Space(5)] [Header("설계도")]
+    [Header("설계도")]
     public int blueprintCount;
     
     [Space(5)] [Header("기본 정보")]
-    [SerializeField] private ProjectileSeed seedProjectile;
     [SerializeField] private new Rigidbody rigidbody;
-    private float _maxVelocity;
+    [SerializeField] private new Collider collider;
+    [SerializeField] private bool initiaize;
+    private float _maxVelocity = 10;
     
     [Space(5)] [Header("이동")]
     [SerializeField] private float moveSpeed;
@@ -22,20 +23,20 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
     [SerializeField] private bool isJumping;
+
+    [Space(5)] [Header("총")] 
+    public GunController gun;
     
     [Space(5)] [Header("부스터")] 
     public bool haveBooster;
     [SerializeField] private float boosterPower;
     [SerializeField] private float boosterCooltime;
     [SerializeField] private bool boosterAvailable;
+    [SerializeField] private GameObject boosterEffect;
 
-    [Space(5)] [Header("공격")]
-    public bool haveSeed;
-    
     [Space(5)] [Header("애니메이션")]
     [SerializeField] private Animator animator;
     [SerializeField] bool animMove;
-    [SerializeField] bool animAtack;
     [SerializeField] bool animJump;
 
     static PlayerController _instance;
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour, IActor
     private void Awake()
     {
         //중력 적용
-        Physics.gravity = new Vector3(0, -50, 0);
+        Physics.gravity = new Vector3(0, -35, 0);
         CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
     }
     
@@ -86,8 +87,7 @@ public class PlayerController : MonoBehaviour, IActor
         Move();
         Jump();
         Dash();
-        Attack();
-        
+
         //최대 속도 체크
         VelocityCheck();
         
@@ -101,10 +101,18 @@ public class PlayerController : MonoBehaviour, IActor
         {
             rigidbody.velocity = new Vector3(_maxVelocity, rigidbody.velocity.y, 0);
         }
+        else if (rigidbody.velocity.x < -_maxVelocity)
+        {
+            rigidbody.velocity = new Vector3(-_maxVelocity, rigidbody.velocity.y, 0);
+        }
         
         if (rigidbody.velocity.y > _maxVelocity)
         {
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, _maxVelocity, 0);
+        }
+        else if (rigidbody.velocity.y < -_maxVelocity)
+        {
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, -_maxVelocity, 0);
         }
     }
     
@@ -154,16 +162,36 @@ public class PlayerController : MonoBehaviour, IActor
     {
         if (!Input.GetKeyDown(KeyCode.Space)) return;
         if (isJumping) return;
+
+        //밑 점프 체크
+        if (!Input.GetKey(KeyCode.DownArrow))
+        {
+            isJumping = true;
         
-        animator.Play("Jump");
-        
-        isJumping = true;
-        
-        _maxVelocity = 15;
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            _maxVelocity = 15;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
+        else
+        {
+            _maxVelocity = 15;
+            CollisionEnable(false);
+        }
     }
-    
+
+    public void CollisionEnable(bool enabled)
+    {
+        if (collider.enabled == enabled) return;
+        
+        collider.enabled = enabled;
+
+        if (!enabled)
+        {
+            //애니메이션
+            animator.Play("JumpStart");
+        }
+    }
+
     private void Dash()
     {
         if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
@@ -185,6 +213,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.AddForce(Vector3.left * boosterPower, ForceMode.Impulse);
             }
+
+            //부스터 이펙트
+            BoosterEffect();
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -201,6 +232,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.AddForce(Vector3.right * boosterPower, ForceMode.Impulse);
             }
+            
+            //부스터 이펙트
+            BoosterEffect();
         }
         else
         {
@@ -211,6 +245,9 @@ public class PlayerController : MonoBehaviour, IActor
                 _maxVelocity = 15;
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.AddForce(new Vector3(0, 1, 0) * (boosterPower * 1.3f), ForceMode.Impulse);
+                
+                //부스터 이펙트
+                BoosterEffect();
             }
         }
 
@@ -221,36 +258,20 @@ public class PlayerController : MonoBehaviour, IActor
         }
     }
 
-    /// <summary>
-    /// 공격 메소드
-    /// </summary>
-    private void Attack()
+    private void BoosterEffect()
     {
-        if (!Input.GetKeyDown(KeyCode.V)) return;
-        if (!haveSeed) return;
-
-        SetSeedStatus(false);
-        Instantiate(seedProjectile, new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), transform.rotation);
+        //이펙트
+        boosterEffect.gameObject.SetActive(false);
+        boosterEffect.gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// 씨앗 획득 시 호출
-    /// </summary>
-    public void SetSeedStatus(bool seedStatus)
-    {
-        haveSeed = seedStatus;
-        
-        //씨앗 UI 변경
-        UIManager.Instance.SetSeedGun(haveSeed);
-    }
-    
     /// <summary>
     /// 부스터 획득 시 호출
     /// </summary>
     public void BoosterAcquisition()
     {
         haveBooster = true;
-        boosterAvailable = true;
+        BoosterAvailable();
     }
 
     /// <summary>
@@ -267,18 +288,36 @@ public class PlayerController : MonoBehaviour, IActor
     /// <summary>
     /// 애니메이션 설정
     /// </summary>
-    public void AnimationSet(ref bool factor, string key, bool value)
+    private void AnimationSet(ref bool factor, string key, bool value)
     {
-        if (factor != value)
-        {
-            factor = value;
-            animator.SetBool(key, value);
-        }
+        if (factor == value) return;
+        
+        factor = value;
+        animator.SetBool(key, value);
     }
 
+    private void OnCollisionExit(Collision other)
+    {
+        if (!other.gameObject.CompareTag("Floor")) return;
+        
+        //애니메이션
+        animator.Play("JumpStart");
+    }
+    
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Floor"))
+        if (!other.gameObject.CompareTag("Floor")) return;
+        if (!initiaize) 
+        {
+            initiaize = true; 
+            return;
+            
+        }
+
+        //애니메이션
+        animator.Play("JumpLanding");
+
+        if (isJumping)
         {
             isJumping = false;
         }
