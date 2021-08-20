@@ -1,0 +1,17 @@
+{
+  "Name": "ConversationUI",
+  "Hash": 1130411620971728008,
+  "Attributes": [],
+  "Prefab": 1,
+  "Center": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Size": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "EnableCull": false
+}

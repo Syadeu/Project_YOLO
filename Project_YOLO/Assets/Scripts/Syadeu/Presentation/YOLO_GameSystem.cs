@@ -32,6 +32,7 @@ namespace Syadeu
 
         private EventSystem m_EventSystem;
         private RenderSystem m_RenderSystem;
+        private EntitySystem m_EntitySystem;
         private YOLO_ActorSystem m_YOLOActorSystem;
 
         #region Presentation Methods
@@ -41,6 +42,7 @@ namespace Syadeu
 
             RequestSystem<EventSystem>(Bind);
             RequestSystem<RenderSystem>(Bind);
+            RequestSystem<EntitySystem>(Bind);
             RequestSystem<YOLO_ActorSystem>(Bind);
 
             return base.OnInitialize();
@@ -53,6 +55,7 @@ namespace Syadeu
             m_EventSystem = null;
             m_RenderSystem = null;
             m_YOLOActorSystem = null;
+            m_EntitySystem = null;
         }
 
         #region Bind
@@ -92,6 +95,10 @@ namespace Syadeu
         private void Bind(YOLO_ActorSystem other)
         {
             m_YOLOActorSystem = other;
+        }
+        private void Bind(EntitySystem other)
+        {
+            m_EntitySystem = other;
         }
 
         #endregion
@@ -142,6 +149,7 @@ namespace Syadeu
         {
             IsInConversation = true;
             float timer = 0;
+            Entity<IEntity> ui = Entity<IEntity>.Empty;
 
             handler.StartConversation(Conversation, out float delay);
 
@@ -211,7 +219,30 @@ namespace Syadeu
 
             void Conversation(EntityData<YOLOActorEntity> entity, string text)
             {
+                if (!ui.Equals(Entity<IEntity>.Empty))
+                {
+                    m_EntitySystem.DestroyEntity(ui);
+                }
+
                 $"{entity.Name} 이 {text} 를 말함".ToLog();
+
+                ActorProviderAttribute provider = entity.GetAttribute<ActorProviderAttribute>();
+                ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, provider.m_ActorProvider.Transform.position);
+
+                ProxyTransform tr = (ProxyTransform)ui.transform;
+
+                CoreSystem.AddBackgroundJob(() =>
+                {
+                    while (tr.proxy == null)
+                    {
+                        CoreSystem.ThreadAwaiter(1);
+                    }
+
+                    CoreSystem.AddForegroundJob(() =>
+                    {
+                        tr.proxy.GetComponent<TextUIComponent>().StartText(text);
+                    });
+                });
             }
         }
     }
