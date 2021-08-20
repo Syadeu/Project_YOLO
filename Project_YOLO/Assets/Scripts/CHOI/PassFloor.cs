@@ -20,15 +20,14 @@ public class PassFloor : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        
-        if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f))
+
+        if (other.transform.position.y > transform.position.y + (transform.localScale.y * 0.5f))
         {
             collider.enabled = true;
         }
         else
         {
             PlayerController.instance.onPassFloors.Remove(collider);
-            collider.isTrigger = false;
             collider.enabled = false;
         }
     }
