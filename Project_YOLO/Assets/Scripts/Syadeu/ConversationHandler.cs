@@ -68,10 +68,17 @@ namespace Syadeu
             DialogueReference.Text currentText = m_Dialogue.m_Texts[idx];
 
             CurrentSpeaker = FindSpeaker(currentText.Principle);
-            CoreSystem.Logger.False(CurrentSpeaker.Equals(EntityData<YOLOActorEntity>.Empty), nameof(StartConversation));
+            //CoreSystem.Logger.False(CurrentSpeaker.Equals(EntityData<YOLOActorEntity>.Empty), nameof(StartConversation));
+            if (CurrentSpeaker.Equals(EntityData<YOLOActorEntity>.Empty))
+            {
+                $"{idx}번째 대화 스킵, 대화 상대를 찾을 수 없음".ToLog();
+                CurrentText = string.Empty;
+                return;
+            }
+
             CurrentText = currentText.Message;
 
-            for (int i = 0; i < currentText.Actions.Length; i++)
+            for (int i = 0; i < currentText.Actions?.Length; i++)
             {
                 currentText.Actions[i].GetObject().Process(CurrentSpeaker);
             }
@@ -102,6 +109,10 @@ namespace Syadeu
             }
 
             SetSpeaker(m_CurrentIndex);
+            if (CurrentSpeaker.Equals(EntityData<YOLOActorEntity>.Empty))
+            {
+                return MoveNext();
+            }
             m_OnConversation.Invoke(CurrentSpeaker, CurrentText);
 
             return true;

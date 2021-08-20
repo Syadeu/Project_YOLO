@@ -32,7 +32,7 @@ namespace Syadeu
             public string Message = string.Empty;
 
             [Space]
-            public Reference<YOLOActionBase>[] Actions;
+            public Reference<YOLOActionBase>[] Actions = Array.Empty<Reference<YOLOActionBase>>();
 
             [Space]
             [ReflectionDescription("활성화시 Delay 만큼 기다린후 다음 대화로 자동으로 넘어감")]

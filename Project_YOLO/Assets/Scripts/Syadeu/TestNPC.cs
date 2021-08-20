@@ -23,21 +23,24 @@ namespace Syadeu
             CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
             yield return new WaitForSeconds(2);
 
-            while (!PlayerController.ActorProvider.IsInitialized)
+            while (PlayerController.ActorProvider == null ||
+                !PlayerController.ActorProvider.IsInitialized)
             {
                 //$"{PlayerController.ActorProvider.Entity.Name}:{PlayerController.ActorProvider.Entity.IsValid()}: {PlayerController.ActorProvider.IsInitialized}".ToLog();
                 yield return null;
             }
 
-            ActorProvider.TryConversation(m_DialogueID, PlayerController.ActorProvider, out var handler);
+            PresentationSystem<YOLO_GameSystem>.System.StartConversation(m_DialogueID, ActorProvider.Entity);
 
-            handler.StartConversation(Conversation);
-            yield return null;
+            //ActorProvider.TryConversation(m_DialogueID, out var handler, PlayerController.ActorProvider.Entity);
 
-            while (handler.MoveNext())
-            {
-                yield return new WaitForSeconds(1);
-            }
+            //handler.StartConversation(Conversation);
+            //yield return null;
+
+            //while (handler.MoveNext())
+            //{
+            //    yield return new WaitForSeconds(1);
+            //}
         }
 
         private void Conversation(EntityData<YOLOActorEntity> entity, string text)

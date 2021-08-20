@@ -18,6 +18,7 @@ namespace Syadeu
 
         public override bool IsInitialized => m_IsInitialized;
         public override EntityData<YOLOActorEntity> Entity => m_Entity;
+        public override Transform Transform => m_Actor.transform;
         public override Animator Animator => m_Actor.Animator;
 
         public StatProvider<T> StatProvider => m_StatProvider;
@@ -65,45 +66,9 @@ namespace Syadeu
             return false;
         }
 
-        public bool TryConversation(DialogueID id, ActorProviderBase target, out ConversationHandler handler)
+        public bool TryConversation(DialogueID id, out ConversationHandler handler, params EntityData<YOLOActorEntity>[] joinedEntities)
         {
-            $"{Entity.IsValid()}".ToLog();
-
-            handler = null;
-            if (id.AttributeHash.Equals(0))
-            {
-                "ID Hash 가 지정되지 않은 DialogueID".ToLog(id);
-                return false;
-            }
-
-            DialogueAttribute dialogueAtt = target.Entity.GetAttribute<DialogueAttribute>();
-            if (dialogueAtt == null)
-            {
-                $"{target.Entity.Name} 은 대화가 가능한 상대가 아님".ToLog();
-                return false;
-            }
-
-            DialogueReference dialogue = dialogueAtt.GetDialogues(id);
-            if (dialogue.m_Texts.Length == 0)
-            {
-                "아무 대화도 없음".ToLog();
-                return false;
-            }
-            else if (!dialogue.m_Texts[0].Principle.m_Hash.Equals(Entity.Target.Hash))
-            {
-                "대화 주체가 아님".ToLog();
-                return false;
-            }
-
-            if (!dialogue.HasEntity(target.Entity.Hash))
-            {
-                $"{target.Entity.Name} 은 대화({dialogue.Name})에서 할말이 없는데 대화하려함".ToLog();
-                return false;
-            }
-
-            handler = PoolContainer<ConversationHandler>.Dequeue();
-            handler.Initialize(dialogue, Entity, target.Entity);
-            return true;
+            return Entity.GetAttribute<DialogueAttribute>().TryConversation(id, out handler, joinedEntities);
         }
     }
 }
