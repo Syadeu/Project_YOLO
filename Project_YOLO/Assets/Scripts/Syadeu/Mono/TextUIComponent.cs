@@ -7,6 +7,7 @@ namespace Syadeu.Mono
     public sealed class TextUIComponent : MonoBehaviour
     {
         public Text m_Text;
+        public float m_TextSpeed = .1f;
 
         private string TargetText = string.Empty;
         private Coroutine Coroutine = null;
@@ -23,7 +24,7 @@ namespace Syadeu.Mono
         }
         IEnumerator TextIter(string text)
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(.2f);
+            WaitForSeconds waitForSeconds = new WaitForSeconds(m_TextSpeed);
 
             int currentIdx = 0;
             while (currentIdx < text.Length)
