@@ -7,18 +7,10 @@ namespace Syadeu
     [CreateAssetMenu(fileName = "NewActorID", menuName = "Actor/ID")]
     public sealed class ActorID : ScriptableObject, IEquatable<ActorID>
     {
-        [SerializeField] private ActorType m_ActorType;
-        [SerializeField] private float m_HP;
+        [SerializeField] private ulong m_EntityHash;
 
-        public Hash ID { get; private set; }
-        public ActorType ActorType => m_ActorType;
-        public float HP => m_HP;
+        public Hash EntityHash => m_EntityHash;
 
-        private void OnEnable()
-        {
-            ID = Hash.NewHash();
-        }
-
-        public bool Equals(ActorID other) => ID.Equals(other.ID);
+        public bool Equals(ActorID other) => m_EntityHash.Equals(other.m_EntityHash);
     }
 }

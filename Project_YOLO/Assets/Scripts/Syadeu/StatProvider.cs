@@ -26,7 +26,7 @@ namespace Syadeu
         public StatProvider(T actor)
         {
             m_Actor = actor;
-            m_HP = actor.ActorID.HP;
+            //m_HP = actor.ActorID.HP;
         }
         ~StatProvider() => Dispose();
         public void Dispose()

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Syadeu
 {
-    public sealed class InventoryProvider<T> : IDisposable where T : MonoBehaviour, IActor
+    public sealed class InventoryProvider<T> : ProviderBase, IDisposable where T : MonoBehaviour, IActor
     {
         private T m_Actor;
         private ActorProvider<T> m_ActorProvider;
