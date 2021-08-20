@@ -14,16 +14,15 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("기본 정보")]
     [SerializeField] private new Rigidbody rigidbody;
     [SerializeField] private new Collider collider;
-    [SerializeField] private bool initiaize;
     private float _maxVelocity = 10;
     
     [Space(5)] [Header("이동")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] private bool isLanding;
 
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
     [SerializeField] private bool isJumping;
+    [SerializeField] private bool downJumpAvailable;
 
     [Space(5)] [Header("총")] 
     public GunController gun;
@@ -74,7 +73,7 @@ public class PlayerController : MonoBehaviour, IActor
     private void Awake()
     {
         //중력 적용
-        Physics.gravity = new Vector3(0, -35, 0);
+        Physics.gravity = new Vector3(0, -50, 0);
         CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
     }
     
@@ -87,13 +86,9 @@ public class PlayerController : MonoBehaviour, IActor
     {
         Move();
         Jump();
-        Dash();
 
         //최대 속도 체크
         VelocityCheck();
-        
-        //현재 포시션 체크
-        //PositionCheck();
     }
 
     private void VelocityCheck()
@@ -116,19 +111,7 @@ public class PlayerController : MonoBehaviour, IActor
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, -_maxVelocity, 0);
         }
     }
-    
-    private void PositionCheck()
-    {
-        Vector3 pos = CameraController.instance.camera.WorldToViewportPoint(transform.position);
 
-        if (pos.x < 0f) pos.x = 0f;
-        if (pos.x > 1f) pos.x = 1f;
-        if (pos.y < 0f) pos.y = 0f;
-        if (pos.y > 1f) pos.y = 1f;
-
-        transform.position = CameraController.instance.camera.ViewportToWorldPoint(pos);
-    }
-    
     private void Move()
     {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
@@ -150,7 +133,7 @@ public class PlayerController : MonoBehaviour, IActor
             }
 
             //이동
-            //transform.Translate(Vector3.forward * (Time.deltaTime * moveSpeed));
+            rigidbody.MovePosition(transform.position + (new Vector3(h, 0, 0) * moveSpeed));
         }
         else
         {
@@ -162,40 +145,48 @@ public class PlayerController : MonoBehaviour, IActor
     private void Jump()
     {
         if (!Input.GetKeyDown(KeyCode.Space)) return;
-        if (isJumping) return;
-
-        //밑 점프 체크
-        if (!Input.GetKey(KeyCode.DownArrow))
-        {
-            isJumping = true;
         
-            _maxVelocity = 15;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        if (isJumping)
+        {
+            if (boosterAvailable)
+            {
+                Booster();
+            }
         }
         else
         {
-            _maxVelocity = 15;
-            CollisionEnable(false);
+            //밑 점프 체크
+            if (!Input.GetKey(KeyCode.DownArrow))
+            {
+                //애니메이션
+                animator.Play("JumpStart");
+                
+                _maxVelocity = 15;
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+            }
+            else
+            {
+                if (downJumpAvailable)
+                {
+                    //애니메이션
+                    animator.Play("JumpStart");
+                    
+                    _maxVelocity = 15;
+                    CollisionEnable(false);
+                }
+            }
         }
     }
 
-    public void CollisionEnable(bool enabled)
+    public void IsJumping()
     {
-        if (collider.enabled == enabled) return;
-        
-        collider.enabled = enabled;
-
-        if (!enabled)
-        {
-            //애니메이션
-            animator.Play("JumpStart");
-        }
+        isJumping = true;
     }
 
-    private void Dash()
+    private void Booster()
     {
-        if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
+        //if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
         if (!haveBooster) return;
         if (!boosterAvailable) return;
         
@@ -207,7 +198,7 @@ public class PlayerController : MonoBehaviour, IActor
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 _maxVelocity = 10;
-                rigidbody.AddForce(new Vector3(-1, 1, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
+                rigidbody.AddForce(new Vector3(-1, 1.5f, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
             }
             else
             {
@@ -226,7 +217,7 @@ public class PlayerController : MonoBehaviour, IActor
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 _maxVelocity = 10;
-                rigidbody.AddForce(new Vector3(1, 1, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
+                rigidbody.AddForce(new Vector3(1, 1.5f, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
             }
             else
             {
@@ -239,24 +230,18 @@ public class PlayerController : MonoBehaviour, IActor
         }
         else
         {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                boosterAvailable = false;
+            boosterAvailable = false;
                 
-                _maxVelocity = 15;
-                rigidbody.velocity = Vector3.zero;
-                rigidbody.AddForce(new Vector3(0, 1, 0) * (boosterPower * 1.3f), ForceMode.Impulse);
+            _maxVelocity = 15;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(new Vector3(0, 1, 0) * (boosterPower * 1.3f), ForceMode.Impulse);
                 
-                //부스터 이펙트
-                BoosterEffect();
-            }
+            //부스터 이펙트
+            BoosterEffect();
         }
 
-        if (!boosterAvailable)
-        {
-            //쿨타임 시작
-            StartCoroutine(BoosterCooltime());
-        }
+        //쿨타임 시작
+        StartCoroutine(BoosterCooltime());
     }
 
     private void BoosterEffect()
@@ -286,6 +271,19 @@ public class PlayerController : MonoBehaviour, IActor
         boosterAvailable = true;
     }
     
+    public void CollisionEnable(bool enabled)
+    {
+        if (collider.enabled == enabled) return;
+        
+        collider.enabled = enabled;
+
+        if (!enabled)
+        {
+            //애니메이션
+            animator.Play("JumpStart");
+        }
+    }
+    
     /// <summary>
     /// 애니메이션 설정
     /// </summary>
@@ -297,41 +295,31 @@ public class PlayerController : MonoBehaviour, IActor
         animator.SetBool(key, value);
     }
 
-    private void OnCollisionExit(Collision other)
+    /*private void OnCollisionExit(Collision other)
     {
         if (!other.gameObject.CompareTag("Floor")) return;
 
-        if (rigidbody.velocity.y != 0)
-        {
-            isLanding = true;
-            
-            //애니메이션
-            animator.Play("JumpStart");
-        }
-    }
+        //애니메이션
+        animator.Play("JumpStart");
+    }*/
     
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.gameObject.CompareTag("Floor")) return;
-        if (!initiaize) 
-        {
-            initiaize = true; 
-            return;
-            
-        }
-        
-        if (isLanding)
-        {
-            isLanding = false;
-            
-            //애니메이션
-            animator.Play("JumpLanding");
-        }
+        var tag = other.gameObject.tag;
+        if (tag != "Floor" && tag != "PassFloor") return;
+        if (!isJumping) return;
 
-        if (isJumping)
+        downJumpAvailable = tag switch
         {
-            isJumping = false;
-        }
+            "Floor" => false,
+            "PassFloor" => true,
+            _ => downJumpAvailable
+        };
+
+        //애니메이션
+        animator.Play("JumpLanding");
+
+        isJumping = false;
     }
 
     //부스터 쿨타임
