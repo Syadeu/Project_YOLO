@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour, IActor
     
     [Space(5)] [Header("이동")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] private bool isLanding;
 
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour, IActor
         VelocityCheck();
         
         //현재 포시션 체크
-        PositionCheck();
+        //PositionCheck();
     }
 
     private void VelocityCheck()
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour, IActor
             }
 
             //이동
-            transform.Translate(Vector3.forward * (Time.deltaTime * moveSpeed));
+            //transform.Translate(Vector3.forward * (Time.deltaTime * moveSpeed));
         }
         else
         {
@@ -299,9 +300,14 @@ public class PlayerController : MonoBehaviour, IActor
     private void OnCollisionExit(Collision other)
     {
         if (!other.gameObject.CompareTag("Floor")) return;
-        
-        //애니메이션
-        animator.Play("JumpStart");
+
+        if (rigidbody.velocity.y != 0)
+        {
+            isLanding = true;
+            
+            //애니메이션
+            animator.Play("JumpStart");
+        }
     }
     
     private void OnCollisionEnter(Collision other)
@@ -313,9 +319,14 @@ public class PlayerController : MonoBehaviour, IActor
             return;
             
         }
-
-        //애니메이션
-        animator.Play("JumpLanding");
+        
+        if (isLanding)
+        {
+            isLanding = false;
+            
+            //애니메이션
+            animator.Play("JumpLanding");
+        }
 
         if (isJumping)
         {
