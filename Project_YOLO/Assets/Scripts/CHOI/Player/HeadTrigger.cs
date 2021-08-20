@@ -10,11 +10,4 @@ public class HeadTrigger : MonoBehaviour
 
         PlayerController.instance.CollisionException(true);
     }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.gameObject.CompareTag("Floor")) return;
-        
-        PlayerController.instance.DownJumpEnd();
-    }
 }

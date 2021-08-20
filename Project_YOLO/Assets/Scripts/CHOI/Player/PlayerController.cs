@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
     [SerializeField] private bool isJumping;
-    [SerializeField] private bool isDownJumping;
+    //[SerializeField] private bool isDownJumping;
     
     [Space(5)] [Header("부스터")] 
     public bool haveBooster;
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour, IActor
         }
         else
         {
-            DownJump();
+            CollisionException(true);
         }
     }
 
@@ -178,21 +178,6 @@ public class PlayerController : MonoBehaviour, IActor
         collider.enabled = !enabled;
     }
 
-    private void DownJump()
-    {
-        isDownJumping = true;
-        CollisionException(true);
-    }
-    
-    public void DownJumpEnd()
-    {
-        if (isDownJumping)
-        {
-            isDownJumping = false;
-            CollisionException(false);
-        }
-    }
-    
     private void Dash()
     {
         if (!Input.GetKeyDown(KeyCode.LeftShift)) return;
