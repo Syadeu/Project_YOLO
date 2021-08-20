@@ -16,6 +16,11 @@ public class UIManager : MonoManager<UIManager>
     [SerializeField] private SimpleSwitch m_SeedGunUI;
     [SerializeField] private Text m_BlueprintTextUI;
 
+    [Space]
+    [SerializeField] private Canvas m_WorldCanvas;
+
+    public Canvas WorldCanvas => m_WorldCanvas;
+
     /// <summary>
     /// UI 의 부스트 게이지 퍼센트를 설정합니다.
     /// </summary>

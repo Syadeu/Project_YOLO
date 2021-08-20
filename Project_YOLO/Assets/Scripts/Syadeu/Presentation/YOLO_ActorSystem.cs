@@ -15,15 +15,20 @@ namespace Syadeu
         public override bool EnableOnPresentation => false;
         public override bool EnableAfterPresentation => false;
 
+        public EntityData<YOLOActorEntity> Player => m_Player;
+
         private readonly Queue<RegistryPayload> m_Registries = new Queue<RegistryPayload>();
         private readonly List<EntityData<YOLOActorEntity>> m_Actors = new List<EntityData<YOLOActorEntity>>();
-        
+
+        private EntityData<YOLOActorEntity> m_Player;
         private EntitySystem m_EntitySystem;
 
         #region Presentation Methods
 
         protected override PresentationResult OnInitialize()
         {
+            YOLOPresentationProvider.Instance.ActorSystem = this;
+
             PoolContainer<ConversationHandler>.Initialize(ConversationHandlerFactory, 1);
 
             RequestSystem<EntitySystem>(Bind);
@@ -39,6 +44,7 @@ namespace Syadeu
         }
         public override void OnDispose()
         {
+            m_Registries.Clear();
             for (int i = 0; i < m_Actors.Count; i++)
             {
                 m_Actors[i].Destroy();
@@ -56,13 +62,18 @@ namespace Syadeu
                 RegistryPayload temp = m_Registries.Dequeue();
 
                 EntityData<IEntityData> entity = m_EntitySystem.CreateObject(temp.actor.ActorID.EntityHash);
-
                 EntityData<YOLOActorEntity> converted = EntityData<YOLOActorEntity>.GetEntityData(entity.Idx);
 
                 converted.GetAttribute<ActorProviderAttribute>().m_ActorProvider = temp.actorProvider;
 
                 temp.actorProvider.Initialize(converted);
                 m_Actors.Add(converted);
+
+                if (converted.Target.ActorType == ActorType.Player)
+                {
+                    m_Player = converted;
+                    $"플레이어 생성됨!".ToLog();
+                }
             }
 
             return base.BeforePresentation();

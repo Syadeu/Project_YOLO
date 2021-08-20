@@ -20,5 +20,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CHOI.unity
     guid: 48322208c254faa449de371c982ab158
+  - enabled: 1
+    path: Assets/Scenes/MapDesign.unity
+    guid: 0849dbe4a2d30f346aca0534932253ba
+  - enabled: 1
+    path: Assets/Scenes/MapDesign_TestSyadeu.unity
+    guid: 0c33beb5a2787404a9482a6c5913426d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8c647bccba3a50b4596ee61389ab2831, type: 2}

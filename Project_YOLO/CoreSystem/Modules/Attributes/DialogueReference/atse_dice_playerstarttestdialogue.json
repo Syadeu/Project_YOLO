@@ -3,28 +3,66 @@
   "Hash": 8656363032514808437,
   "Texts": [
     {
-      "Culture": 1,
       "Principle": 3407605770480729199,
-      "Message": "1초 기다리자",
-      "Action": [],
+      "Messages": [
+        "1_npc_1",
+        "1_npc_2",
+        "1_npc_3"
+      ],
+      "Actions": [
+        6780887558557279084
+      ],
+      "EnableAuto": true,
+      "Delay": 5.0
+    },
+    {
+      "Principle": 3407605770480729199,
+      "Messages": [
+        "2_npc_1",
+        "2_npc_2"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "3_player_1",
+        "3_player_1"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 3407605770480729199,
+      "Messages": [
+        "4_npctest"
+      ],
+      "Actions": [],
       "EnableAuto": true,
       "Delay": 1.0
     },
     {
-      "Culture": 1,
       "Principle": 3407605770480729199,
-      "Message": "1초 끝 다음 누구냐",
-      "Action": [],
-      "EnableAuto": false,
-      "Delay": 0.0
+      "Messages": [
+        "5_npctest"
+      ],
+      "Actions": [],
+      "EnableAuto": true,
+      "Delay": 1.0
     },
     {
-      "Culture": 1,
-      "Principle": 7785164833589502067,
-      "Message": "바로나!",
-      "Action": [],
+      "Principle": 3407605770480729199,
+      "Messages": [
+        "6_npctest"
+      ],
+      "Actions": [],
       "EnableAuto": false,
       "Delay": 0.0
     }
-  ]
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
 }

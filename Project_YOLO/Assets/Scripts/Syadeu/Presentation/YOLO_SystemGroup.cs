@@ -7,7 +7,7 @@ namespace Syadeu
 {
     internal sealed class YOLO_SystemGroup : PresentationGroupEntity
     {
-        public override SceneReference DependenceScene => SceneList.Instance.Scenes[0];
+        //public override SceneReference DependenceScene => SceneList.Instance.Scenes[0];
 
         public override void Register()
         {
