@@ -65,3 +65,21 @@ Project_YOLO/Library/
 Project_YOLO/Logs/
 Project_YOLO/obj/
 Project_YOLO/UserSettings/EditorUserSettings.asset
+
+# Never ignore DLLs in the FMOD subfolder.
+!Project_YOLO/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!Project_YOLO/[Aa]ssets/Gizmos/FMOD/*
+!Project_YOLO/[Aa]ssets/Editor Default Resources/FMOD/*
+                    
+# Ignore the Cache folder since it is updated locally.
+Project_YOLO/[Aa]ssets/Plugins/FMOD/Cache/*
+                    
+# Ignore bank files in the StreamingAssets folder.
+Project_YOLO/[Aa]ssets/StreamingAssets/**/*.bank
+Project_YOLO/[Aa]ssets/StreamingAssets/**/*.bank.meta
+                    
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+Project_YOLO/fmod_editor.log
