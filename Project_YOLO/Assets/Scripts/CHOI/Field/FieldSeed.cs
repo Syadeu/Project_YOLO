@@ -12,8 +12,7 @@ public class FieldSeed : MonoBehaviour, IItem
     {
         if (!other.gameObject.CompareTag("Player")) return;
         if (PlayerController.instance.gun.haveSeed) return;
-        if (!other.isTrigger) return;
-        
+
         PlayerController.instance.gun.SetSeedStatus(true);
         Destroy(gameObject);
     }

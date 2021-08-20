@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour, IActor
     public int blueprintCount;
     
     [Space(5)] [Header("기본 정보")]
+    public bool inputPause;
     [SerializeField] private new Rigidbody rigidbody;
     [SerializeField] private new Collider collider;
     private float _maxVelocity = 10;
     
     [Space(5)] [Header("이동")]
     [SerializeField] private float moveSpeed;
+    public List<Collider> onPassFloors;
 
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
@@ -85,6 +87,8 @@ public class PlayerController : MonoBehaviour, IActor
 
     private void Update()
     {
+        if (inputPause) return;
+        
         Move();
         Jump();
 
@@ -174,7 +178,12 @@ public class PlayerController : MonoBehaviour, IActor
                     animator.Play("JumpStart");
                     
                     _maxVelocity = 15;
-                    CollisionEnable(false);
+
+                    foreach (var floor in onPassFloors)
+                    {
+                        floor.isTrigger = true;
+                    }
+                    onPassFloors.Clear();
                 }
             }
         }
@@ -296,26 +305,17 @@ public class PlayerController : MonoBehaviour, IActor
         animator.SetBool(key, value);
     }
 
-    /*private void OnCollisionExit(Collision other)
-    {
-        if (!other.gameObject.CompareTag("Floor")) return;
-
-        //애니메이션
-        animator.Play("JumpStart");
-    }*/
-    
     private void OnCollisionEnter(Collision other)
     {
         var tag = other.gameObject.tag;
         if (tag != "Floor" && tag != "PassFloor") return;
-        if (!isJumping) return;
-
         downJumpAvailable = tag switch
         {
             "Floor" => false,
             "PassFloor" => true,
             _ => downJumpAvailable
         };
+        if (!isJumping) return;
 
         //애니메이션
         animator.Play("JumpLanding");

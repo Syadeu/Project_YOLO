@@ -8,8 +8,7 @@ public class FieldBooster : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
         if (PlayerController.instance.haveBooster) return;
-        if (!other.isTrigger) return;
-        
+
         PlayerController.instance.BoosterAcquisition();
         Destroy(gameObject);
     }
