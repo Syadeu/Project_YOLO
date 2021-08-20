@@ -27,6 +27,8 @@ namespace Syadeu
 
         protected override PresentationResult OnInitialize()
         {
+            YOLOPresentationProvider.Instance.ActorSystem = this;
+
             PoolContainer<ConversationHandler>.Initialize(ConversationHandlerFactory, 1);
 
             RequestSystem<EntitySystem>(Bind);

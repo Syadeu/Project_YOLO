@@ -20,7 +20,7 @@ namespace Syadeu
 
         private IEnumerator Start()
         {
-            CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
+            CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
             yield return new WaitForSeconds(2);
 
             while (PlayerController.ActorProvider == null ||
@@ -50,7 +50,7 @@ namespace Syadeu
 
         private void RegisterActor()
         {
-            ActorProvider = PresentationSystem<YOLO_ActorSystem>.System.RegisterActor(this);
+            ActorProvider = YOLOPresentationProvider.Instance.ActorSystem.RegisterActor(this);
         }
     }
 }

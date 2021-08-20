@@ -5,5 +5,6 @@ namespace Syadeu
     public sealed class YOLOPresentationProvider : CLRSingleTone<YOLOPresentationProvider>
     {
         public YOLO_GameSystem GameSystem;
+        public YOLO_ActorSystem ActorSystem;
     }
 }

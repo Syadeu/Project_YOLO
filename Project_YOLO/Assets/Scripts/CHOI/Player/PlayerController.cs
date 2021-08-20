@@ -74,12 +74,13 @@ public class PlayerController : MonoBehaviour, IActor
     {
         //중력 적용
         Physics.gravity = new Vector3(0, -50, 0);
-        CoreSystem.WaitInvoke(PresentationSystem<YOLO_ActorSystem>.IsValid, RegisterActor);
+        PresentationSystemGroup<YOLO_SystemGroup>.Start();
+        CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
     }
     
     private void RegisterActor()
     {
-        m_ActorProvider = PresentationSystem<YOLO_ActorSystem>.System.RegisterActor(this);
+        m_ActorProvider = YOLOPresentationProvider.Instance.ActorSystem.RegisterActor(this);
     }
 
     private void Update()
