@@ -8,6 +8,6 @@ public class HeadTrigger : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Floor")) return;
 
-        PlayerController.instance.CollisionException(true);
+        PlayerController.instance.CollisionEnable(false);
     }
 }

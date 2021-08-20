@@ -8,6 +8,6 @@ public class BodyTrigger : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Floor")) return;
         
-        PlayerController.instance.CollisionException(false);
+        PlayerController.instance.CollisionEnable(true);
     }
 }

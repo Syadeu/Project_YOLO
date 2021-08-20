@@ -11,13 +11,10 @@ public class FieldSeed : MonoBehaviour, IItem
     private void OnTriggerStay(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        if (PlayerController.instance.haveSeed) return;
+        if (PlayerController.instance.gun.haveSeed) return;
         if (!other.isTrigger) return;
         
-        PlayerController.instance.SetSeedStatus(true);
+        PlayerController.instance.gun.SetSeedStatus(true);
         Destroy(gameObject);
     }
 }
-
-// �̰ɷ� ���� ��� �Ͻô°� ������, �ı��������� �������̽� �ް� ����Ͻø� �ɰŰ��ƿ�
-// �̷������ο�
