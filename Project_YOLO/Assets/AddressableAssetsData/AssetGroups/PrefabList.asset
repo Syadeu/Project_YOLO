@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 2e80cc5196c4d8141b321a0c6e36ecc9
+    m_Address: Assets/AddressableAssetsData/PrefabList/ConversationUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d77e5f636a97166459faaaf99808cf33, type: 2}
   m_SchemaSet:

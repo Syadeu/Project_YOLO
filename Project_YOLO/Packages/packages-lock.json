@@ -162,7 +162,7 @@
       }
     },
     "syadeu.coresystem": {
-      "version": "https://github.com/Syadeu/CoreSystem.git#2.0.0-preview11",
+      "version": "https://github.com/Syadeu/CoreSystem.git#2.0.0-preview15",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -175,7 +175,7 @@
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.test-framework": "1.1.27"
       },
-      "hash": "80c7c5a63838458124d71fe883b074658ecde312"
+      "hash": "0ac6fb80da1b2f57bd925cad6f4d45932d248590"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

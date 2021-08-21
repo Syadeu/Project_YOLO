@@ -8,20 +8,23 @@ using Syadeu.Presentation;
 
 public class PlayerController : MonoBehaviour, IActor
 {
-    [Header("설계도")]
-    public int blueprintCount;
+    [Space(5)] [Header("모든 동작 정지")]
+    public bool inputPause;
     
     [Space(5)] [Header("기본 정보")]
     [SerializeField] private new Rigidbody rigidbody;
-    [SerializeField] private new Collider collider;
     private float _maxVelocity = 10;
     
+    [Space(5)] [Header("설계도")]
+    public int blueprintCount;
+
     [Space(5)] [Header("이동")]
     [SerializeField] private float moveSpeed;
+    public List<Collider> onPassFloors;
 
     [Space(5)] [Header("점프")]
     [SerializeField] private float jumpPower;
-    [SerializeField] private bool isJumping;
+    public bool isJumping;
     [SerializeField] private bool downJumpAvailable;
 
     [Space(5)] [Header("총")] 
@@ -37,7 +40,6 @@ public class PlayerController : MonoBehaviour, IActor
     [Space(5)] [Header("애니메이션")]
     [SerializeField] private Animator animator;
     [SerializeField] bool animMove;
-    [SerializeField] bool animJump;
 
     static PlayerController _instance;
 
@@ -85,6 +87,8 @@ public class PlayerController : MonoBehaviour, IActor
 
     private void Update()
     {
+        if (inputPause) return;
+        
         Move();
         Jump();
 
@@ -174,7 +178,12 @@ public class PlayerController : MonoBehaviour, IActor
                     animator.Play("JumpStart");
                     
                     _maxVelocity = 15;
-                    CollisionEnable(false);
+
+                    foreach (var floor in onPassFloors)
+                    {
+                        floor.enabled = false;
+                    }
+                    onPassFloors.Clear();
                 }
             }
         }
@@ -271,20 +280,7 @@ public class PlayerController : MonoBehaviour, IActor
         
         boosterAvailable = true;
     }
-    
-    public void CollisionEnable(bool enabled)
-    {
-        if (collider.enabled == enabled) return;
-        
-        collider.enabled = enabled;
 
-        if (!enabled)
-        {
-            //애니메이션
-            animator.Play("JumpStart");
-        }
-    }
-    
     /// <summary>
     /// 애니메이션 설정
     /// </summary>
@@ -296,26 +292,17 @@ public class PlayerController : MonoBehaviour, IActor
         animator.SetBool(key, value);
     }
 
-    /*private void OnCollisionExit(Collision other)
-    {
-        if (!other.gameObject.CompareTag("Floor")) return;
-
-        //애니메이션
-        animator.Play("JumpStart");
-    }*/
-    
     private void OnCollisionEnter(Collision other)
     {
         var tag = other.gameObject.tag;
         if (tag != "Floor" && tag != "PassFloor") return;
-        if (!isJumping) return;
-
         downJumpAvailable = tag switch
         {
             "Floor" => false,
             "PassFloor" => true,
             _ => downJumpAvailable
         };
+        if (!isJumping) return;
 
         //애니메이션
         animator.Play("JumpLanding");

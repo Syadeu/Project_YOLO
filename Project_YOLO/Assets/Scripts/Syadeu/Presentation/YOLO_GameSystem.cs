@@ -5,6 +5,7 @@ using Syadeu.Presentation.Events;
 using Syadeu.Presentation.Render;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Syadeu
 {
@@ -32,6 +33,8 @@ namespace Syadeu
 
         private EventSystem m_EventSystem;
         private RenderSystem m_RenderSystem;
+        private WorldCanvasSystem m_WorldCanvasSystem;
+        private EntitySystem m_EntitySystem;
         private YOLO_ActorSystem m_YOLOActorSystem;
 
         #region Presentation Methods
@@ -41,6 +44,8 @@ namespace Syadeu
 
             RequestSystem<EventSystem>(Bind);
             RequestSystem<RenderSystem>(Bind);
+            RequestSystem<WorldCanvasSystem>(Bind);
+            RequestSystem<EntitySystem>(Bind);
             RequestSystem<YOLO_ActorSystem>(Bind);
 
             return base.OnInitialize();
@@ -53,6 +58,7 @@ namespace Syadeu
             m_EventSystem = null;
             m_RenderSystem = null;
             m_YOLOActorSystem = null;
+            m_EntitySystem = null;
         }
 
         #region Bind
@@ -60,6 +66,10 @@ namespace Syadeu
         private void Bind(RenderSystem other)
         {
             m_RenderSystem = other;
+        }
+        private void Bind(WorldCanvasSystem other)
+        {
+            m_WorldCanvasSystem = other;
         }
 
         private void Bind(EventSystem other)
@@ -93,12 +103,20 @@ namespace Syadeu
         {
             m_YOLOActorSystem = other;
         }
+        private void Bind(EntitySystem other)
+        {
+            m_EntitySystem = other;
+        }
 
         #endregion
 
         protected override PresentationResult OnStartPresentation()
         {
             m_RenderSystem.Camera = CameraManager.Instance.Camera;
+            m_WorldCanvasSystem.Canvas.GetComponent<CanvasScaler>().dynamicPixelsPerUnit = 10;
+
+            FMOD.FMODSystem.GetParameterDescriptionByName("GameState", out var description);
+            FMOD.FMODSystem.SetGlobalParam(description, 2);
 
             return base.OnStartPresentation();
         }
@@ -142,6 +160,7 @@ namespace Syadeu
         {
             IsInConversation = true;
             float timer = 0;
+            Entity<IEntity> ui = Entity<IEntity>.Empty;
 
             handler.StartConversation(Conversation, out float delay);
 
@@ -182,6 +201,8 @@ namespace Syadeu
                     timer = 0;
                 }
 
+                yield return null;
+
                 while (timer < delay)
                 {
                     if (Input.GetKeyUp(KeyCode.Space))
@@ -211,7 +232,30 @@ namespace Syadeu
 
             void Conversation(EntityData<YOLOActorEntity> entity, string text)
             {
+                if (!ui.Equals(Entity<IEntity>.Empty))
+                {
+                    m_EntitySystem.DestroyEntity(ui);
+                }
+
                 $"{entity.Name} 이 {text} 를 말함".ToLog();
+
+                ActorProviderAttribute provider = entity.GetAttribute<ActorProviderAttribute>();
+                ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, provider.m_ActorProvider.Transform.position);
+
+                ProxyTransform tr = (ProxyTransform)ui.transform;
+
+                CoreSystem.AddBackgroundJob(() =>
+                {
+                    while (tr.proxy == null)
+                    {
+                        CoreSystem.ThreadAwaiter(1);
+                    }
+
+                    CoreSystem.AddForegroundJob(() =>
+                    {
+                        tr.proxy.GetComponent<TextUIComponent>().StartText(text);
+                    });
+                });
             }
         }
     }
