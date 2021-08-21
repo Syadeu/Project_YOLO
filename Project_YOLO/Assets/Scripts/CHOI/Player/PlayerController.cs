@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     //애니메이터
     private Animator _animator;
     private bool _animMove;
+    private bool _animLanding;
     
     static PlayerController _instance;
 
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
         _isJumping = false;
     }
-    
+
     /// <summary>
     /// 애니메이션 설정
     /// </summary>

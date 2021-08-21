@@ -9,6 +9,7 @@ TagManager:
   - PassFloor
   - Enemy
   - InvisibleWall
+  - SeedBox
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
+  - Grass
+  - Item
   - 
   - 
   - 
