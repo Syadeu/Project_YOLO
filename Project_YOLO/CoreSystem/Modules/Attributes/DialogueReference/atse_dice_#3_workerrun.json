@@ -21,6 +21,6 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
+  "IsMoveable": true,
   "OnEndofDialogueActions": []
 }
