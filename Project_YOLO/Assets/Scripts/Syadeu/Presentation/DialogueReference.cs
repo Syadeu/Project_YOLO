@@ -38,11 +38,15 @@ namespace Syadeu
             [ReflectionDescription("말하고나서 기다릴 시간(초)")]
             public float Delay = 0;
         }
+        [JsonProperty] public Reference<YOLOActionBase>[] OnStartDialogueActions = Array.Empty<Reference<YOLOActionBase>>();
+        [JsonProperty] public Reference<YOLOActionBase>[] OnEndofDialogueActions = Array.Empty<Reference<YOLOActionBase>>();
 
         [ReflectionDescription("0번째 인덱스는 무조건 대화를 시작하는 주체입니다")]
         [JsonProperty(PropertyName = "Texts")] public Text[] m_Texts = Array.Empty<Text>();
         [JsonProperty] public bool IsMoveable = false;
-        [JsonProperty] public Reference<YOLOActionBase>[] OnEndofDialogueActions = Array.Empty<Reference<YOLOActionBase>>();
+
+        [Space]
+        [ReflectionDescription("아래 액션의 주체는 무조건 이 Dialogue 의 0번째 화자(즉 이 대화를 시작한)입니다.")]
 
         [JsonIgnore] private bool m_Initialized = false;
         [JsonIgnore] private readonly HashSet<Hash> m_JoinedEntities = new HashSet<Hash>();
