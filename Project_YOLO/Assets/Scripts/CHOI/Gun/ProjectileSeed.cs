@@ -46,6 +46,8 @@ public class ProjectileSeed : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Player")) return;
+        
         //Lock all axes movement and rotation
         rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
