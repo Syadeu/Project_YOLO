@@ -1,0 +1,17 @@
+{
+  "Name": "#3_WarnningSign",
+  "Hash": 2477848723452323366,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "이런... 메뚜기를 만나면 위험할텐데..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

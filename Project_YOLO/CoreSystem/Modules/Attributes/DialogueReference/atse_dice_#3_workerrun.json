@@ -1,0 +1,26 @@
+{
+  "Name": "#3_WorkerRun",
+  "Hash": 59466651750558613,
+  "Texts": [
+    {
+      "Principle": 8521932147493691576,
+      "Messages": [
+        "꺄아아아악!!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5323452685012445341,
+      "Messages": [
+        "돔황차~~~"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

@@ -1,0 +1,20 @@
+{
+  "Name": "#3_OutWorker",
+  "Hash": 2714752940885449471,
+  "Texts": [
+    {
+      "Principle": 5251828689674382174,
+      "Messages": [
+        "개미는...",
+        "뚠뚠...",
+        "오늘도...",
+        "뚠뚠..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

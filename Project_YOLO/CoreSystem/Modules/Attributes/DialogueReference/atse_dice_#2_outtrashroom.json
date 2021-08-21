@@ -1,0 +1,18 @@
+{
+  "Name": "#2_OutTrashRoom",
+  "Hash": 6980472606191027985,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "저...저긴...",
+        "여왕님이 계신 곳인데..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

@@ -1,0 +1,26 @@
+{
+  "Name": "#2_Queen'sConcern",
+  "Hash": 8002602207180058053,
+  "Texts": [
+    {
+      "Principle": 7409614572576546196,
+      "Messages": [
+        "흐음... "
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7409614572576546196,
+      "Messages": [
+        "메뚜기들이 다시 공격을 하면 어쩌지..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}
