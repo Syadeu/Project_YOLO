@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{255751d9-ca0c-4bf3-aea6-c3ff40ebdd1e}">
+		<property name="assetPath">
+			<value>Soundtracks/Track1/0011 - Zildjian 16_ Dyn.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>90.714291666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7f0d6c60-e47f-4311-a2a6-3db0f43e408d}</destination>
+		</relationship>
+	</object>
+</objects>

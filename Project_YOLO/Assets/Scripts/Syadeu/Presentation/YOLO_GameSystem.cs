@@ -115,6 +115,9 @@ namespace Syadeu
             m_RenderSystem.Camera = CameraManager.Instance.Camera;
             m_WorldCanvasSystem.Canvas.GetComponent<CanvasScaler>().dynamicPixelsPerUnit = 10;
 
+            FMOD.FMODSystem.GetParameterDescriptionByName("GameState", out var description);
+            FMOD.FMODSystem.SetGlobalParam(description, 2);
+
             return base.OnStartPresentation();
         }
 

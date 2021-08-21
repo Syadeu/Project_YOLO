@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{41a0e0ac-f035-44b1-acc0-40f33140071e}">
+		<property name="assetPath">
+			<value>Soundtracks/Track1/0004 - Lead_1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>90.714291666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7f0d6c60-e47f-4311-a2a6-3db0f43e408d}</destination>
+		</relationship>
+	</object>
+</objects>

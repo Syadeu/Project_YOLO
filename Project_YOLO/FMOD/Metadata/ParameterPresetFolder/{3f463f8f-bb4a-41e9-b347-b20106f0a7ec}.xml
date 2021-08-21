@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPresetFolder" id="{3f463f8f-bb4a-41e9-b347-b20106f0a7ec}">
+		<property name="name">
+			<value>Sountrack</value>
+		</property>
+		<relationship name="folder">
+			<destination>{408dfe71-dfcf-45d5-a7e7-fafbe7e1dfda}</destination>
+		</relationship>
+	</object>
+</objects>
