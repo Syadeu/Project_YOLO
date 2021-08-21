@@ -24,9 +24,9 @@ MonoBehaviour:
   Scenes:
   - sceneAsset: {fileID: 102900000, guid: 0849dbe4a2d30f346aca0534932253ba, type: 3}
     scenePath: Assets/Scenes/MapDesign.unity
+  - sceneAsset: {fileID: 102900000, guid: 0c33beb5a2787404a9482a6c5913426d, type: 3}
+    scenePath: Assets/Scenes/MapDesign_TestSyadeu.unity
   - sceneAsset: {fileID: 102900000, guid: 48322208c254faa449de371c982ab158, type: 3}
     scenePath: Assets/CHOI.unity
   - sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
     scenePath: Assets/Scenes/Game.unity
-  - sceneAsset: {fileID: 102900000, guid: 0c33beb5a2787404a9482a6c5913426d, type: 3}
-    scenePath: Assets/Scenes/MapDesign_TestSyadeu.unity

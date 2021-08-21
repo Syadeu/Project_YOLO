@@ -248,7 +248,7 @@ namespace Syadeu
                 float3 pos = provider.m_ActorProvider.Transform.position;
                 pos += provider.m_ConvUIOffset;
 
-                ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, provider.m_ActorProvider.Transform.position);
+                ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, pos);
                 ui.GetAttribute<ConversationUIAttribute>().TargetText = text;
 
                 //ProxyTransform tr = (ProxyTransform)ui.transform;

@@ -7,12 +7,11 @@ namespace Syadeu.Mono
     public sealed class TextUIComponent : MonoBehaviour
     {
         public Text m_Text;
-        public float m_TextSpeed = .1f;
 
         private string TargetText = string.Empty;
         private Coroutine Coroutine = null;
 
-        public void StartText(string text)
+        public void StartText(string text, float speed)
         {
             if (Coroutine != null)
             {
@@ -20,11 +19,11 @@ namespace Syadeu.Mono
             }
 
             TargetText = text;
-            Coroutine = StartCoroutine(TextIter(text));
+            Coroutine = StartCoroutine(TextIter(text, speed));
         }
-        IEnumerator TextIter(string text)
+        IEnumerator TextIter(string text, float speed)
         {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(m_TextSpeed);
+            WaitForSeconds waitForSeconds = new WaitForSeconds(speed);
 
             int currentIdx = 0;
             while (currentIdx < text.Length)
