@@ -1,0 +1,13 @@
+{
+  "Name": "AnimationClipAction",
+  "Hash": 7367806392720516931,
+  "m_Entity": 6652394503930531680,
+  "m_AnimationClip": 2,
+  "m_OnClipStartActions": [
+    1919588900654793084
+  ],
+  "m_OnClipEndActions": [
+    4023741704695861456,
+    3649785625870932433
+  ]
+}

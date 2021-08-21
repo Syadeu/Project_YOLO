@@ -94,6 +94,12 @@ namespace Syadeu
 
             for (int i = 0; i < currentText.Actions?.Length; i++)
             {
+                if (!currentText.Actions[i].IsValid())
+                {
+                    $"{textIdx} 번째 텍스트의 {i} 번째 액션이 유효하지 않음".ToLogError();
+                    continue;
+                }
+
                 currentText.Actions[i].GetObject().Process(EntityData<IEntityData>.GetEntityData(CurrentSpeaker.Idx));
             }
         }
@@ -102,7 +108,7 @@ namespace Syadeu
         {
             for (int i = 0; i < m_Dialogue.OnEndofDialogueActions?.Length; i++)
             {
-                m_Dialogue.OnEndofDialogueActions[i].GetObject().Process(CurrentSpeaker);
+                m_Dialogue.OnEndofDialogueActions[i].GetObject().Process(FindSpeaker(m_Dialogue.m_Texts[0].Principle).Idx);
             }
 
             Started = false;
