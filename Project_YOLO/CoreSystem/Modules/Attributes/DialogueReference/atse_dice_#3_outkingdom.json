@@ -1,0 +1,17 @@
+{
+  "Name": "#3_OutKingdom",
+  "Hash": 4927008012037638391,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "저기는 밀밭 쪽인가??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

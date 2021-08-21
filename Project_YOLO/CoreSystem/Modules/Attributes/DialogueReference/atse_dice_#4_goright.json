@@ -1,0 +1,17 @@
+{
+  "Name": "#4_GoRight",
+  "Hash": 3117431801906739211,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "엇... 저기는 메뚜기들이 지내는 곳인데???"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

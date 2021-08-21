@@ -1,0 +1,17 @@
+{
+  "Name": "#1_InTrashRoom",
+  "Hash": 3772280418495755431,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "저기있다!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

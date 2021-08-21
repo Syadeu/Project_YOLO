@@ -1,0 +1,17 @@
+{
+  "Name": "#4_FindRecipe",
+  "Hash": 8274924554086562978,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "와!!! 드디어 설계도를 전부 찾았어!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

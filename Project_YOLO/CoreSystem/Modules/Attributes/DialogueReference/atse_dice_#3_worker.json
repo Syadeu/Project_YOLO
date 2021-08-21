@@ -1,0 +1,26 @@
+{
+  "Name": "#3_Worker",
+  "Hash": 7386648676578382496,
+  "Texts": [
+    {
+      "Principle": 8521932147493691576,
+      "Messages": [
+        "아이고... 힘들다..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5323452685012445341,
+      "Messages": [
+        "퇴근하고 싶다..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

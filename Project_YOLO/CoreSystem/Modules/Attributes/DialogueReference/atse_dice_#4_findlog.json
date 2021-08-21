@@ -1,0 +1,18 @@
+{
+  "Name": "#4_FindLog",
+  "Hash": 2512188110798671428,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "으으... 하필 이곳에 들어가다니...",
+        "하지만 마지막 설계도를 꼭 찾아야해!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

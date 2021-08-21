@@ -1,0 +1,17 @@
+{
+  "Name": "#2_EnterQueen'sRoom",
+  "Hash": 3010375615518740136,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "여왕님께 걸리지 않고 저 안쪽까지 갈 수 있을까??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

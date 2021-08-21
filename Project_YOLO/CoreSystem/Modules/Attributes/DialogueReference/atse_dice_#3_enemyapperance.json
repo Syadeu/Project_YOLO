@@ -1,0 +1,18 @@
+{
+  "Name": "#3_EnemyApperance",
+  "Hash": 4744755267714235525,
+  "Texts": [
+    {
+      "Principle": 6857936614906549587,
+      "Messages": [
+        "와하하하!!!",
+        "여기있는 씨앗들은 전부 우리거다!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

@@ -1,0 +1,17 @@
+{
+  "Name": "#1_OutRoom",
+  "Hash": 3370963452649494225,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "저긴 쓰레기 방 쪽인데?"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

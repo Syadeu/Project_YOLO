@@ -1,0 +1,18 @@
+{
+  "Name": "#3_FindRecipe",
+  "Hash": 268626469774313563,
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "휴... 이제 하나 남았다",
+        "이 옆으로는 길이 없으니 왕국 쪽으로 돌아가볼까???"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}
