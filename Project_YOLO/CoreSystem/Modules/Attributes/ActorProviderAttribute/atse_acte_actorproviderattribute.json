@@ -1,5 +1,10 @@
 {
   "Name": "ActorProviderAttribute",
   "Hash": 583650800460651132,
-  "m_ConversationUI": 1130411620971728008
+  "m_ConversationUI": 1130411620971728008,
+  "m_ConvUIOffset": [
+    0.0,
+    0.0,
+    0.0
+  ]
 }

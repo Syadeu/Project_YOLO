@@ -1,7 +1,9 @@
 {
   "Name": "ConversationUI",
   "Hash": 1130411620971728008,
-  "Attributes": [],
+  "Attributes": [
+    5996337873471405242
+  ],
   "Prefab": 1,
   "Center": [
     0.0,

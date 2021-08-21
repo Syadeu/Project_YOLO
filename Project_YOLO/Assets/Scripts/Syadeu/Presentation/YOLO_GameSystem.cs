@@ -4,6 +4,7 @@ using Syadeu.Presentation.Entities;
 using Syadeu.Presentation.Events;
 using Syadeu.Presentation.Render;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -169,6 +170,7 @@ namespace Syadeu
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     "skip".ToLog();
+                    timer = delay;
                     break;
                 }
 
@@ -176,7 +178,7 @@ namespace Syadeu
                 yield return null;
             }
 
-            if (delay > 0 && timer > 0)
+            if (delay > 0)
             {
                 if (!handler.MoveNext(out delay))
                 {
@@ -187,6 +189,7 @@ namespace Syadeu
             }
 
             timer = 0;
+            yield return null;
 
             while (true)
             {
@@ -208,6 +211,7 @@ namespace Syadeu
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
                         "skip".ToLog();
+                        timer = delay;
                         break;
                     }
 
@@ -215,7 +219,7 @@ namespace Syadeu
                     yield return null;
                 }
 
-                if (delay > 0 && timer > 0)
+                if (delay > 0)
                 {
                     if (!handler.MoveNext(out delay))
                     {
@@ -240,22 +244,27 @@ namespace Syadeu
                 $"{entity.Name} 이 {text} 를 말함".ToLog();
 
                 ActorProviderAttribute provider = entity.GetAttribute<ActorProviderAttribute>();
+
+                float3 pos = provider.m_ActorProvider.Transform.position;
+                pos += provider.m_ConvUIOffset;
+
                 ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, provider.m_ActorProvider.Transform.position);
+                ui.GetAttribute<ConversationUIAttribute>().TargetText = text;
 
-                ProxyTransform tr = (ProxyTransform)ui.transform;
+                //ProxyTransform tr = (ProxyTransform)ui.transform;
 
-                CoreSystem.AddBackgroundJob(() =>
-                {
-                    while (tr.proxy == null)
-                    {
-                        CoreSystem.ThreadAwaiter(1);
-                    }
+                //CoreSystem.AddBackgroundJob(() =>
+                //{
+                //    while (tr.proxy == null)
+                //    {
+                //        CoreSystem.ThreadAwaiter(1);
+                //    }
 
-                    CoreSystem.AddForegroundJob(() =>
-                    {
-                        tr.proxy.GetComponent<TextUIComponent>().StartText(text);
-                    });
-                });
+                //    CoreSystem.AddForegroundJob(() =>
+                //    {
+                //        tr.proxy.GetComponent<TextUIComponent>().StartText(text);
+                //    });
+                //});
             }
         }
     }
