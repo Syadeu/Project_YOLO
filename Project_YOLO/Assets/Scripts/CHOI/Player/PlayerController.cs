@@ -117,22 +117,22 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        Booster.Booster(BoosterType.Diagonal, new Vector3(-1, 1.5f, 0));
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(-1, 2f, 0));
                     }
                     else
                     {
-                        Booster.Booster(BoosterType.Straight, Vector3.left);
+                        Booster.Booster(BoosterType.Straight, new Vector3(-1, 0.5f, 0));
                     }
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        Booster.Booster(BoosterType.Diagonal, new Vector3(1, 1.5f, 0));
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(1, 2f, 0));
                     }
                     else
                     {
-                        Booster.Booster(BoosterType.Straight, Vector3.right);
+                        Booster.Booster(BoosterType.Straight, new Vector3(1, 0.5f, 0));
                     }
                 }
                 else

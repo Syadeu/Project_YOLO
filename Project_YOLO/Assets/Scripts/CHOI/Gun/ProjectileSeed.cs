@@ -49,7 +49,7 @@ public class ProjectileSeed : MonoBehaviour
         //Lock all axes movement and rotation
         rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
-
+        
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point + contact.normal * hitOffset;
@@ -81,5 +81,11 @@ public class ProjectileSeed : MonoBehaviour
         }
         
         Destroy(gameObject);
+        
+        //적인지 체크 후 데미지
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyController>().TakeDamage();
+        }
     }
 }
