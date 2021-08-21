@@ -1,0 +1,27 @@
+{
+  "Name": "#2_2_FindDogHole",
+  "Hash": 3552978164569645874,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "어?? 저 위에 구멍이 나있잖아??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "저기로 들어갈 수 있을지도??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false
+}

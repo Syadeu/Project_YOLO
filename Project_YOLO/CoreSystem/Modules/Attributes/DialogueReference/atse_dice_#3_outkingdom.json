@@ -1,7 +1,18 @@
 {
   "Name": "#3_OutKingdom",
   "Hash": 4927008012037638391,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "어라??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
     {
       "Principle": 7785164833589502067,
       "Messages": [
@@ -12,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

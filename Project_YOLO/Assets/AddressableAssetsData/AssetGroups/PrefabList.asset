@@ -33,10 +33,22 @@ MonoBehaviour:
     m_Address: Assets/AddressableAssetsData/PrefabList/New Animation.anim
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 7400000, guid: e6c1300000ad781429af859b6803e2c9, type: 2}
-    m_TargetAsset: {fileID: 7400000, guid: e6c1300000ad781429af859b6803e2c9, type: 2}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 475c6c7b5e46ee749ae2a2267756d2b4
     m_Address: Assets/AddressableAssetsData/PrefabList/TestCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6dded321bd3223b42a0a1b4f2fca7677
+    m_Address: "Assets/Prefabs/\uC124\uACC4\uB3C4.prefab"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c7231bf8f0952474bac9879532ce6a5c
+    m_Address: Assets/Prefabs/MoveRecipe.anim
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

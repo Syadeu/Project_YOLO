@@ -1,7 +1,9 @@
 {
   "Name": "Worker1",
   "Hash": 8521932147493691576,
-  "Attributes": [],
+  "Attributes": [
+    583650800460651132
+  ],
   "ActorType": 4,
   "Type": 4
 }

@@ -1,11 +1,21 @@
 {
   "Name": "#2_FindRecipe",
   "Hash": 3922632582147585382,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
       "Messages": [
-        "좋았어!!",
+        "좋았어!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
         "다시 조심히 돌아가면 되겠어."
       ],
       "Actions": [],
@@ -13,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

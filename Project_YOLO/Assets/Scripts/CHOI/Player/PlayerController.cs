@@ -6,7 +6,7 @@ using UnityEngine;
 using Syadeu;
 using Syadeu.Presentation;
 
-public class PlayerController : MonoBehaviour, IActor
+public class PlayerController : MonoBehaviour
 {
     [Space(5)] [Header("모든 동작 정지")] 
     public bool inputPause;
@@ -49,23 +49,6 @@ public class PlayerController : MonoBehaviour, IActor
         }
     }
 
-    #region IActor
-
-    [Space(5)] [Header("IActor")] [SerializeField]
-    private ActorID m_ActorID;
-
-    [SerializeField] private SkillDescription[] m_Skills = Array.Empty<SkillDescription>();
-
-    private ActorProvider<PlayerController> m_ActorProvider;
-
-    public Animator Animator => _animator;
-    public ActorID ActorID => m_ActorID;
-    public SkillDescription[] Skills => m_Skills;
-
-    public ActorProvider<PlayerController> ActorProvider => m_ActorProvider;
-
-    #endregion
-
     private void Awake()
     {
         //중력 적용
@@ -78,12 +61,6 @@ public class PlayerController : MonoBehaviour, IActor
         Booster = gameObject.GetComponent<BoosterController>();
         
         PresentationSystemGroup<YOLO_SystemGroup>.Start();
-        CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
-    }
-    
-    private void RegisterActor()
-    {
-        m_ActorProvider = YOLOPresentationProvider.Instance.ActorSystem.RegisterActor(this);
     }
 
     private void Update()
@@ -140,22 +117,22 @@ public class PlayerController : MonoBehaviour, IActor
                 {
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        Booster.Booster(BoosterType.Diagonal, new Vector3(-1, 1.5f, 0));
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(-1, 2f, 0));
                     }
                     else
                     {
-                        Booster.Booster(BoosterType.Straight, Vector3.left);
+                        Booster.Booster(BoosterType.Straight, new Vector3(-1, 0.5f, 0));
                     }
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        Booster.Booster(BoosterType.Diagonal, new Vector3(1, 1.5f, 0));
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(1, 2f, 0));
                     }
                     else
                     {
-                        Booster.Booster(BoosterType.Straight, Vector3.right);
+                        Booster.Booster(BoosterType.Straight, new Vector3(1, 0.5f, 0));
                     }
                 }
                 else

@@ -1,6 +1,8 @@
 {
   "Name": "PlayerStartTestDialogue",
   "Hash": 8656363032514808437,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 3407605770480729199,
@@ -63,6 +65,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

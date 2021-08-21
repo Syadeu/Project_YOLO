@@ -1,0 +1,13 @@
+{
+  "Name": "RecipeFly",
+  "Hash": 3178718751279259075,
+  "m_Entity": 1186496548831681656,
+  "m_AnimationClip": 5,
+  "m_OnClipStartActions": [
+    1919588900654793084
+  ],
+  "m_OnClipEndActions": [
+    4023741704695861456,
+    3649785625870932433
+  ]
+}

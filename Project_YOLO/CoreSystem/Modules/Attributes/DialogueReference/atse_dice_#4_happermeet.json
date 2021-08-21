@@ -1,6 +1,8 @@
 {
   "Name": "#4_HapperMeet",
   "Hash": 7541038660870993429,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 1965226633179021745,
@@ -12,6 +14,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

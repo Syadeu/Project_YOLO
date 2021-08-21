@@ -1,6 +1,8 @@
 {
   "Name": "#4_HapperDefeat",
   "Hash": 2137970123000958223,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 0,
@@ -12,6 +14,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

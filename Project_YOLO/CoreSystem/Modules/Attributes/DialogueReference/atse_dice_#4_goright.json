@@ -1,6 +1,8 @@
 {
   "Name": "#4_GoRight",
   "Hash": 3117431801906739211,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
@@ -12,6 +14,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

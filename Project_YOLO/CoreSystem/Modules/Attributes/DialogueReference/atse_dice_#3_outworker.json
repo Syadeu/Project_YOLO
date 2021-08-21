@@ -1,20 +1,45 @@
 {
   "Name": "#3_OutWorker",
   "Hash": 2714752940885449471,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 5251828689674382174,
       "Messages": [
-        "개미는...",
-        "뚠뚠...",
-        "오늘도...",
+        "개미는..."
+      ],
+      "Actions": [],
+      "EnableAuto": true,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5251828689674382174,
+      "Messages": [
         "뚠뚠..."
       ],
       "Actions": [],
-      "EnableAuto": false,
+      "EnableAuto": true,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5251828689674382174,
+      "Messages": [
+        "오늘도..."
+      ],
+      "Actions": [],
+      "EnableAuto": true,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5251828689674382174,
+      "Messages": [
+        "뚠뚠..."
+      ],
+      "Actions": [],
+      "EnableAuto": true,
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

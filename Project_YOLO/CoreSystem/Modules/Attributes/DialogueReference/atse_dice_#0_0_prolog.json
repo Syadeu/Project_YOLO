@@ -1,0 +1,164 @@
+{
+  "Name": "#0_0_PROLOG",
+  "Hash": 597466366323709958,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
+  "Texts": [
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "좋아... 이걸 이렇게 하면 어떨까?"
+      ],
+      "Actions": [
+        4023741704695861456
+      ],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "플릭!! 뭐하고 있어. 일하러가 가야지!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "오 좋은데??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "여기서 샤프트를 풀어 줄 수 있으면 되겠다."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "장비 챙기고 빨리 가자~"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "샤프트 풀고~ 여기서 잡아주면~"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "야!!! 이런것좀 그만 하고 할 일이나 해!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "!!!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "도트!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "지금 뭐하는거야!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "전에 너가 만든 쓰레기 때문에 왕국 물바다 된거 몰라?"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "이번엔 또 어떤 짓을 하려는건지..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 5150521394805467203,
+      "Messages": [
+        "쓸데없는 짓 하지말고 일터로 와."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "쓰레기가 아니라 발.명.품. 이라고!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "안돼... 내가 공들여 만들던 \"엄청나게 획기적인 발명품 설계도\"가!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "도트가 힘이 약하니 얼마가지 못했을거야."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "얼른 설계도를 찾으러 가야겠어!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false
+}
