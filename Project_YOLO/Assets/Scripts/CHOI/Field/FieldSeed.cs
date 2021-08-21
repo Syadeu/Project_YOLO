@@ -11,10 +11,10 @@ public class FieldSeed : MonoBehaviour, IItem
     private void OnTriggerStay(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        if (PlayerController.instance.gun == null) return;
-        if (PlayerController.instance.gun.haveSeed) return;
+        if (PlayerController.instance.Gun == null) return;
+        if (PlayerController.instance.Gun.HaveSeed) return;
 
-        PlayerController.instance.gun.SetSeedStatus(true);
+        PlayerController.instance.Gun.SetSeedStatus(true);
         Destroy(gameObject);
     }
 }

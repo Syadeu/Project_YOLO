@@ -7,10 +7,10 @@ public class FieldBooster : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        if (PlayerController.instance.booster == null) return;
-        if (PlayerController.instance.booster.haveBooster) return;
+        if (PlayerController.instance.Booster == null) return;
+        if (PlayerController.instance.Booster.HaveBooster) return;
 
-        PlayerController.instance.booster.BoosterAcquisition();
+        PlayerController.instance.Booster.BoosterAcquisition();
         Destroy(gameObject);
     }
 }

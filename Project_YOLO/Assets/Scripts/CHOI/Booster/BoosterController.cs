@@ -3,78 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BoosterType 
+{
+    Straight,
+    Diagonal,
+    Upward
+}
+
 public class BoosterController : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
+    
+    [Space(5)] [Header("직선 부스터 파워")]
+    [SerializeField] private float straightPower;
+    
+    [Space(5)] [Header("대각 부스터 파워")]
+    [SerializeField] private float diagonalPower;
+    
+    [Space(5)] [Header("위로 부스터 파워")]
+    [SerializeField] private float upPower;
+    
     
     [Space(5)] [Header("기본 정보")]
-    public bool haveBooster;
-    [SerializeField] private float boosterPower;
     [SerializeField] private float boosterCooltime;
-    public bool boosterAvailable;
-    public float maxVelocity = 10;
     [SerializeField] private GameObject boosterEffect;
+    
+    //부스터 상태
+    [NonSerialized] public bool HaveBooster;
+    [NonSerialized] public bool boosterAvailable;
 
     private void Start()
     {
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        _rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
-    public void Booster()
+    public void Booster(BoosterType type, Vector3 force)
     {
-        if (!haveBooster) return;
-        if (!boosterAvailable) return;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
+        boosterAvailable = false;
+        
+        switch (type)
         {
-            boosterAvailable = false;
-
-            rigidbody.velocity = Vector3.zero;
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                maxVelocity = 10;
-                rigidbody.AddForce(new Vector3(-1, 1.5f, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
-            }
-            else
-            {
-                maxVelocity = 15;
-                rigidbody.AddForce(Vector3.left * boosterPower, ForceMode.Impulse);
-            }
-
-            //부스터 이펙트
-            BoosterEffect();
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            boosterAvailable = false;
-
-            rigidbody.velocity = Vector3.zero;
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                maxVelocity = 10;
-                rigidbody.AddForce(new Vector3(1, 1.5f, 0) * (boosterPower * 0.7f), ForceMode.Impulse);
-            }
-            else
-            {
-                maxVelocity = 15;
-                rigidbody.AddForce(Vector3.right * boosterPower, ForceMode.Impulse);
-            }
-
-            //부스터 이펙트
-            BoosterEffect();
-        }
-        else
-        {
-            boosterAvailable = false;
-
-            maxVelocity = 15;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(new Vector3(0, 1, 0) * (boosterPower * 1.3f), ForceMode.Impulse);
-
-            //부스터 이펙트
-            BoosterEffect();
+            case BoosterType.Straight:
+                _rigidbody.AddForce(force * straightPower, ForceMode.Impulse);
+                break;
+            case BoosterType.Diagonal:
+                _rigidbody.AddForce(force * diagonalPower, ForceMode.Impulse);
+                break;
+            case BoosterType.Upward:
+                _rigidbody.AddForce(force * upPower, ForceMode.Impulse);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
 
+        //부스터 이펙트
+        BoosterEffect();
+        
         //쿨타임 시작
         StartCoroutine(BoosterCooltime());
     }
@@ -91,7 +75,7 @@ public class BoosterController : MonoBehaviour
     /// </summary>
     public void BoosterAcquisition()
     {
-        haveBooster = true;
+        HaveBooster = true;
         BoosterAvailable();
     }
 

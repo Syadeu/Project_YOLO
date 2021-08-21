@@ -13,17 +13,19 @@ public class PlayerController : MonoBehaviour, IActor
 
     [Space(5)] [Header("이동")] 
     [SerializeField] private float moveSpeed;
-    public List<Collider> onPassFloors;
 
     [Space(5)] [Header("점프")] 
     [SerializeField] private float jumpPower;
-    [SerializeField] private bool downJumpAvailable;
-    public bool isJumping;
+    private bool _downJumpAvailable;
+    private bool _isJumping;
 
+    //현재 밟고 있는 패스플로어
+    [SerializeField] public List<Collider> ONPassFloors = new List<Collider>();
+    
     //아이템
-    [NonSerialized] public GunController gun;
-    [NonSerialized] public BoosterController booster;
-    [NonSerialized] public int blueprintCount;
+    [NonSerialized] public GunController Gun;
+    [NonSerialized] public BoosterController Booster;
+    [NonSerialized] public int BlueprintCount;
 
     //리지드바디
     private Rigidbody _rigidbody;
@@ -72,13 +74,13 @@ public class PlayerController : MonoBehaviour, IActor
         //초기화
         _rigidbody = gameObject.GetComponent<Rigidbody>();
         _animator = gameObject.GetComponent<Animator>();
-        gun = gameObject.GetComponent<GunController>();
-        booster = gameObject.GetComponent<BoosterController>();
+        Gun = gameObject.GetComponent<GunController>();
+        Booster = gameObject.GetComponent<BoosterController>();
         
         PresentationSystemGroup<YOLO_SystemGroup>.Start();
         CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
     }
-
+    
     private void RegisterActor()
     {
         m_ActorProvider = YOLOPresentationProvider.Instance.ActorSystem.RegisterActor(this);
@@ -90,32 +92,6 @@ public class PlayerController : MonoBehaviour, IActor
 
         Move();
         Jump();
-        
-        //최대 속도 체크
-        VelocityCheck();
-    }
-    
-    private void VelocityCheck()
-    {
-        if (booster == null) return;
-        
-        if (_rigidbody.velocity.x > booster.maxVelocity)
-        {
-            _rigidbody.velocity = new Vector3(booster.maxVelocity, _rigidbody.velocity.y, 0);
-        }
-        else if (_rigidbody.velocity.x < -booster.maxVelocity)
-        {
-            _rigidbody.velocity = new Vector3(-booster.maxVelocity, _rigidbody.velocity.y, 0);
-        }
-
-        if (_rigidbody.velocity.y > booster.maxVelocity)
-        {
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, booster.maxVelocity, 0);
-        }
-        else if (_rigidbody.velocity.y < -booster.maxVelocity)
-        {
-            _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, -booster.maxVelocity, 0);
-        }
     }
 
     private void Move()
@@ -152,11 +128,40 @@ public class PlayerController : MonoBehaviour, IActor
     {
         if (!Input.GetKeyDown(KeyCode.Space)) return;
 
-        if (isJumping)
+        if (_isJumping)
         {
-            if (booster != null)
+            if (Booster != null)
             {
-                booster.Booster();
+                if (!Booster.HaveBooster) return;
+                if (!Booster.boosterAvailable) return;
+                
+                _rigidbody.velocity = Vector3.zero;
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    if (Input.GetKey(KeyCode.UpArrow))
+                    {
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(-1, 1.5f, 0));
+                    }
+                    else
+                    {
+                        Booster.Booster(BoosterType.Straight, Vector3.left);
+                    }
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    if (Input.GetKey(KeyCode.UpArrow))
+                    {
+                        Booster.Booster(BoosterType.Diagonal, new Vector3(1, 1.5f, 0));
+                    }
+                    else
+                    {
+                        Booster.Booster(BoosterType.Straight, Vector3.right);
+                    }
+                }
+                else
+                {
+                    Booster.Booster(BoosterType.Upward, new Vector3(0, 1, 0));
+                }
             }
         }
         else
@@ -172,7 +177,7 @@ public class PlayerController : MonoBehaviour, IActor
             }
             else
             {
-                if (!downJumpAvailable) return;
+                if (!_downJumpAvailable) return;
                 
                 //애니메이션
                 _animator.Play("JumpStart");
@@ -182,14 +187,14 @@ public class PlayerController : MonoBehaviour, IActor
 
     public void IsJumping()
     {
-        isJumping = true;
+        _isJumping = true;
 
-        foreach (var floor in onPassFloors)
+        foreach (var floor in ONPassFloors)
         {
             floor.enabled = false;
         }
 
-        onPassFloors.Clear();
+        ONPassFloors.Clear();
     }
     
     //점프 착지
@@ -199,18 +204,21 @@ public class PlayerController : MonoBehaviour, IActor
         if (tag != "Floor" && tag != "PassFloor") return;
         if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f)) return;;
         
-        downJumpAvailable = other.gameObject.tag switch
+        _downJumpAvailable = other.gameObject.tag switch
         {
             "Floor" => false,
             "PassFloor" => true,
-            _ => downJumpAvailable
+            _ => _downJumpAvailable
         };
-        if (!isJumping) return;
+        if (!_isJumping) return;
 
+        //미끄러지지 않도록 속도 초기화
+        _rigidbody.velocity = Vector3.zero;
+        
         //애니메이션
         _animator.Play("JumpLanding");
 
-        isJumping = false;
+        _isJumping = false;
     }
     
     /// <summary>
