@@ -11,6 +11,7 @@ public class FieldSeed : MonoBehaviour, IItem
     private void OnTriggerStay(Collider other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
+        if (PlayerController.instance.gun == null) return;
         if (PlayerController.instance.gun.haveSeed) return;
 
         PlayerController.instance.gun.SetSeedStatus(true);
