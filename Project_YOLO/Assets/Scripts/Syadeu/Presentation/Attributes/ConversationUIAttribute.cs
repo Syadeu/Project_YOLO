@@ -12,6 +12,7 @@ namespace Syadeu
         [JsonProperty] public float TextSpeed = .1f;
 
         [JsonIgnore] public string TargetText = string.Empty;
+        [JsonIgnore] public TextUIComponent UIComponent = null;
     }
     internal sealed class ConversationUIProcessor : AttributeProcessor<ConversationUIAttribute>,
         IAttributeOnProxyCreated
@@ -19,7 +20,9 @@ namespace Syadeu
         public void OnProxyCreated(AttributeBase attribute, Entity<IEntity> entity, RecycleableMonobehaviour monoObj)
         {
             ConversationUIAttribute att = (ConversationUIAttribute)attribute;
-            monoObj.GetComponent<TextUIComponent>().StartText(att.TargetText, att.TextSpeed);
+
+            att.UIComponent = monoObj.GetComponent<TextUIComponent>();
+            att.UIComponent.StartText(att.TargetText, att.TextSpeed);
         }
     }
 }

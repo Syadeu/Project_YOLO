@@ -157,78 +157,58 @@ namespace Syadeu
             StartCoroutine(ConversationUpdate(handler));
             return handler;
         }
+
+        Entity<IEntity> m_ConversationUI = Entity<IEntity>.Empty;
+
         private IEnumerator ConversationUpdate(ConversationHandler handler)
         {
             IsInConversation = true;
             float timer = 0;
-            Entity<IEntity> ui = Entity<IEntity>.Empty;
-
+            
             handler.StartConversation(Conversation, out float delay);
 
-            while (timer < delay)
-            {
-                if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    "skip".ToLog();
-                    timer = delay;
-                    break;
-                }
-
-                timer += Time.deltaTime;
-                yield return null;
-            }
-
-            if (delay > 0)
-            {
-                if (!handler.MoveNext(out delay))
-                {
-                    "대화 끝".ToLog();
-                    IsInConversation = false;
-                    yield break;
-                }
-            }
-
-            timer = 0;
             yield return null;
 
             while (true)
             {
-                if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    if (!handler.MoveNext(out delay))
-                    {
-                        "대화 끝".ToLog();
-                        IsInConversation = false;
-                        yield break;
-                    }
-                    timer = 0;
-                }
-
-                yield return null;
-
-                while (timer < delay)
-                {
-                    if (Input.GetKeyUp(KeyCode.Space))
-                    {
-                        "skip".ToLog();
-                        timer = delay;
-                        break;
-                    }
-
-                    timer += Time.deltaTime;
-                    yield return null;
-                }
-
                 if (delay > 0)
                 {
-                    if (!handler.MoveNext(out delay))
+                    while (timer < delay)
                     {
-                        "대화 끝".ToLog();
+                        if (Input.GetKeyUp(KeyCode.Space))
+                        {
+                            "skip 2".ToLog();
+                            timer = delay;
+                            break;
+                        }
+
+                        timer += Time.deltaTime;
+                        yield return null;
+                    }
+                    timer = 0;
+                    yield return null;
+                    continue;
+                }
+
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    bool skipped = false;
+                    if (!m_ConversationUI.Equals(Entity<IEntity>.Empty))
+                    {
+                        var prevUI = m_ConversationUI.GetAttribute<ConversationUIAttribute>();
+                        if (prevUI.UIComponent.IsTexting)
+                        {
+                            prevUI.UIComponent.Skip();
+                            skipped = true;
+                        }
+                    }
+                    if (!skipped && !handler.MoveNext(out delay))
+                    {
+                        "대화 끝 2".ToLog();
+                        DestroyUI();
                         IsInConversation = false;
                         yield break;
                     }
-
-                    timer = 0;
                 }
 
                 yield return null;
@@ -236,10 +216,7 @@ namespace Syadeu
 
             void Conversation(EntityData<YOLOActorEntity> entity, string text)
             {
-                if (!ui.Equals(Entity<IEntity>.Empty))
-                {
-                    m_EntitySystem.DestroyEntity(ui);
-                }
+                DestroyUI();
 
                 $"{entity.Name} 이 {text} 를 말함".ToLog();
 
@@ -248,23 +225,14 @@ namespace Syadeu
                 float3 pos = provider.m_ActorProvider.Transform.position;
                 pos += provider.m_ConvUIOffset;
 
-                ui = m_EntitySystem.CreateEntity(provider.m_ConversationUI, pos);
-                ui.GetAttribute<ConversationUIAttribute>().TargetText = text;
+                m_ConversationUI = m_EntitySystem.CreateEntity(provider.m_ConversationUI, pos);
+                m_ConversationUI.GetAttribute<ConversationUIAttribute>().TargetText = text;
 
-                //ProxyTransform tr = (ProxyTransform)ui.transform;
-
-                //CoreSystem.AddBackgroundJob(() =>
-                //{
-                //    while (tr.proxy == null)
-                //    {
-                //        CoreSystem.ThreadAwaiter(1);
-                //    }
-
-                //    CoreSystem.AddForegroundJob(() =>
-                //    {
-                //        tr.proxy.GetComponent<TextUIComponent>().StartText(text);
-                //    });
-                //});
+                m_ConversationUI.GetAttribute<TransformFollowerAttribute>().Setup(provider.m_ActorProvider.Transform, provider.m_ConvUIOffset);
+            }
+            void DestroyUI()
+            {
+                if (!m_ConversationUI.Equals(Entity<IEntity>.Empty)) m_EntitySystem.DestroyEntity(m_ConversationUI);
             }
         }
     }
