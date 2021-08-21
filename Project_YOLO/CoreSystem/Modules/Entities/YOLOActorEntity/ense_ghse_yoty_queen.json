@@ -1,7 +1,9 @@
 {
   "Name": "Queen",
   "Hash": 7409614572576546196,
-  "Attributes": [],
+  "Attributes": [
+    583650800460651132
+  ],
   "ActorType": 4,
   "Type": 4
 }
