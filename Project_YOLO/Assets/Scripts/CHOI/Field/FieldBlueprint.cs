@@ -9,8 +9,8 @@ public class FieldBlueprint : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        PlayerController.instance.blueprintCount++;
-        UIManager.Instance.SetBlueprintCount(PlayerController.instance.blueprintCount);
+        PlayerController.instance.BlueprintCount++;
+        UIManager.Instance.SetBlueprintCount(PlayerController.instance.BlueprintCount);
         Destroy(gameObject);
     }
 }

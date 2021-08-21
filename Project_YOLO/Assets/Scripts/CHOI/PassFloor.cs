@@ -15,7 +15,7 @@ public class PassFloor : MonoBehaviour
         if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f))
         {
             collider.enabled = true;
-            PlayerController.instance.onPassFloors.Add(collider);
+            PlayerController.instance.ONPassFloors.Add(collider);
         }
     }
     
@@ -23,16 +23,16 @@ public class PassFloor : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        if (!PlayerController.instance.onPassFloors.Contains(collider) && 
+        if (!PlayerController.instance.ONPassFloors.Contains(collider) && 
             other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f))
         {
             collider.enabled = true;
-            PlayerController.instance.onPassFloors.Add(collider);
+            PlayerController.instance.ONPassFloors.Add(collider);
         }
         else
         {
             collider.enabled = false;
-            PlayerController.instance.onPassFloors.Remove(collider);
+            PlayerController.instance.ONPassFloors.Remove(collider);
         }
     }
 }
