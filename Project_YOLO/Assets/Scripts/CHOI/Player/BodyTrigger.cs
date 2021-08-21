@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class BodyTrigger : MonoBehaviour
 {
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter (Collider other)
     {
         if (!other.gameObject.CompareTag("PassFloor")) return;
+        if (other.isTrigger) return;
+        if (PlayerController.instance.onPassFloors.Contains(other)) return;
         
-        PlayerController.instance.CollisionEnable(true);
+        PlayerController.instance.onPassFloors.Add(other);
+    }
+    
+    private void OnTriggerExit (Collider other)
+    {
+        if (!other.gameObject.CompareTag("PassFloor")) return;
+        if (other.isTrigger) return;
+        
+        other.enabled = false;
+        PlayerController.instance.onPassFloors.Remove(other);
     }
 }

@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour
     
     private void Update()
     {
+        if (PlayerController.instance.inputPause) return;
+        
         Shoot();
     }
     
