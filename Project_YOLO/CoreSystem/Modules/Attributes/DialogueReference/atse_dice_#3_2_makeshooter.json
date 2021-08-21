@@ -1,6 +1,8 @@
 {
   "Name": "#3_2_MakeShooter",
   "Hash": 7423861117024984299,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
@@ -93,6 +95,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

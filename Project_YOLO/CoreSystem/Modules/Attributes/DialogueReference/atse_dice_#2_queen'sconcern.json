@@ -1,6 +1,8 @@
 {
   "Name": "#2_Queen'sConcern",
   "Hash": 8002602207180058053,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7409614572576546196,
@@ -13,6 +15,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": true,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

@@ -1,6 +1,8 @@
 {
   "Name": "#3_MeetEnemy",
   "Hash": 98435885280213422,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 6857936614906549587,
@@ -21,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": true,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

@@ -1,6 +1,8 @@
 {
   "Name": "#3_OutWorker",
   "Hash": 2714752940885449471,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 5251828689674382174,
@@ -39,6 +41,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": true,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

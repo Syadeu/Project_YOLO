@@ -1,6 +1,8 @@
 {
   "Name": "#2_0_OutTrashRoom",
   "Hash": 6980472606191027985,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
@@ -21,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

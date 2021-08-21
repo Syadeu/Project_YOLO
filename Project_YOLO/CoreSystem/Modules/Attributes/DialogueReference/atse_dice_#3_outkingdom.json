@@ -1,6 +1,8 @@
 {
   "Name": "#3_OutKingdom",
   "Hash": 4927008012037638391,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
@@ -21,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

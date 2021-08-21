@@ -1,6 +1,8 @@
 {
   "Name": "#3_Worker",
   "Hash": 7386648676578382496,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 8521932147493691576,
@@ -21,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": true,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

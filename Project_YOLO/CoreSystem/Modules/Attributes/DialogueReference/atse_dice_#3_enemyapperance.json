@@ -1,6 +1,8 @@
 {
   "Name": "#3_EnemyApperance",
   "Hash": 4744755267714235525,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 6857936614906549587,
@@ -21,6 +23,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": true,
-  "OnEndofDialogueActions": []
+  "IsMoveable": true
 }

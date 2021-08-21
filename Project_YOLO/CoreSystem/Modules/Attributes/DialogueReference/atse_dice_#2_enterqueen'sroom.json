@@ -1,6 +1,8 @@
 {
   "Name": "#2_EnterQueen'sRoom",
   "Hash": 3010375615518740136,
+  "OnStartDialogueActions": [],
+  "OnEndofDialogueActions": [],
   "Texts": [
     {
       "Principle": 7785164833589502067,
@@ -12,6 +14,5 @@
       "Delay": 0.0
     }
   ],
-  "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "IsMoveable": false
 }

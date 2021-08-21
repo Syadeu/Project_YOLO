@@ -6,7 +6,7 @@ using UnityEngine;
 using Syadeu;
 using Syadeu.Presentation;
 
-public class PlayerController : MonoBehaviour, IActor
+public class PlayerController : MonoBehaviour
 {
     [Space(5)] [Header("모든 동작 정지")] 
     public bool inputPause;
@@ -49,23 +49,6 @@ public class PlayerController : MonoBehaviour, IActor
         }
     }
 
-    #region IActor
-
-    [Space(5)] [Header("IActor")] [SerializeField]
-    private ActorID m_ActorID;
-
-    [SerializeField] private SkillDescription[] m_Skills = Array.Empty<SkillDescription>();
-
-    private ActorProvider<PlayerController> m_ActorProvider;
-
-    public Animator Animator => _animator;
-    public ActorID ActorID => m_ActorID;
-    public SkillDescription[] Skills => m_Skills;
-
-    public ActorProvider<PlayerController> ActorProvider => m_ActorProvider;
-
-    #endregion
-
     private void Awake()
     {
         //중력 적용
@@ -78,12 +61,6 @@ public class PlayerController : MonoBehaviour, IActor
         Booster = gameObject.GetComponent<BoosterController>();
         
         PresentationSystemGroup<YOLO_SystemGroup>.Start();
-        CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
-    }
-    
-    private void RegisterActor()
-    {
-        m_ActorProvider = YOLOPresentationProvider.Instance.ActorSystem.RegisterActor(this);
     }
 
     private void Update()
