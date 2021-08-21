@@ -5,7 +5,15 @@
     {
       "Principle": 7785164833589502067,
       "Messages": [
-        "좋았어!!",
+        "좋았어!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
         "다시 조심히 돌아가면 되겠어."
       ],
       "Actions": [],

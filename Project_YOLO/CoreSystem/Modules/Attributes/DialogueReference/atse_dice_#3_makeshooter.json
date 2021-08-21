@@ -1,13 +1,11 @@
 {
-  "Name": "#3_MakeShooter",
+  "Name": "#3_2_MakeShooter",
   "Hash": 7423861117024984299,
   "Texts": [
     {
       "Principle": 7785164833589502067,
       "Messages": [
-        "이런!!! ",
-        "메뚜기가 있으면 밀밭을 돌아다닐 수 없잖아...",
-        ""
+        "이런!!! "
       ],
       "Actions": [],
       "EnableAuto": false,
@@ -16,13 +14,78 @@
     {
       "Principle": 7785164833589502067,
       "Messages": [
-        "아!!!",
-        "포자의 추진력을 이용해 씨앗을 날리면 메뚜기를 퇴치 할 수 있지 않을까??",
-        "이걸 이렇게 연결하고~ 여기는 붙이고~",
-        "...",
-        "......",
-        "짠~ \"씨앗 발사기 Mk2\" 완성!!!",
-        "전엔 발사시킬 동력이 약했지만 포자 추진체를 이용했으니 충분히 강력할거야.",
+        "메뚜기가 있으면 밀밭을 돌아다닐 수 없잖아..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 1.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "아!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "포자의 추진력을 이용해 씨앗을 날리면 메뚜기를 퇴치 할 수 있지 않을까??"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "이걸 이렇게 연결하고~ 여기는 붙이고~"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "......"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "짠~ \"씨앗 발사기 Mk2\" 완성!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "전엔 발사시킬 동력이 약했지만 포자 추진체를 이용했으니 충분히 강력할거야."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
         "임시로 만들어서 한 번에 하나 씩 만 발사 할 수 있지만..."
       ],
       "Actions": [],

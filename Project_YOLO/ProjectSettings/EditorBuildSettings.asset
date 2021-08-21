@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapDesign_TestSyadeu.unity
     guid: 0c33beb5a2787404a9482a6c5913426d
+  - enabled: 1
+    path: Assets/Scenes/YOLOMap.unity
+    guid: f7a5bcf9f3cd9a0409a4796433bf8401
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8c647bccba3a50b4596ee61389ab2831, type: 2}

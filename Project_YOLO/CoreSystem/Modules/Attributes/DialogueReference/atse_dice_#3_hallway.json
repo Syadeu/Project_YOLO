@@ -1,12 +1,28 @@
 {
-  "Name": "#3_HallWay",
+  "Name": "#3_0_HallWay",
   "Hash": 8977565773597522159,
   "Texts": [
     {
       "Principle": 7785164833589502067,
       "Messages": [
-        "앗!!!",
-        "밖으로 나가버렸네...",
+        "앗!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
+        "밖으로 나가버렸네..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7785164833589502067,
+      "Messages": [
         "왕국 밖은 위험한데 괜찮을까??"
       ],
       "Actions": [],
