@@ -1,0 +1,17 @@
+{
+  "Name": "#4_HapperMeet",
+  "Hash": 7541038660870993429,
+  "Texts": [
+    {
+      "Principle": 1965226633179021745,
+      "Messages": [
+        "겁없이 들어오다니 가만두지 않겠다!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

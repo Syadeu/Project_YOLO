@@ -1,0 +1,26 @@
+{
+  "Name": "#2_KickedOut",
+  "Hash": 5469559547489418703,
+  "Texts": [
+    {
+      "Principle": 7409614572576546196,
+      "Messages": [
+        "경비병!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    },
+    {
+      "Principle": 7409614572576546196,
+      "Messages": [
+        "당장 플릭을 내보내세요!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

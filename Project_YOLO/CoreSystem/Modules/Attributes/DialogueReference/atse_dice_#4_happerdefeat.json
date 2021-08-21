@@ -1,0 +1,17 @@
+{
+  "Name": "#4_HapperDefeat",
+  "Hash": 2137970123000958223,
+  "Texts": [
+    {
+      "Principle": 0,
+      "Messages": [
+        "이...이런..."
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}

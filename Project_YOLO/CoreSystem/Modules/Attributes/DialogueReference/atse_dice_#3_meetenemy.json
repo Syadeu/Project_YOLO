@@ -1,0 +1,18 @@
+{
+  "Name": "#3_MeetEnemy",
+  "Hash": 98435885280213422,
+  "Texts": [
+    {
+      "Principle": 6857936614906549587,
+      "Messages": [
+        "이녀석!!! 겁도 없이!!!",
+        "돌진!!!!!!"
+      ],
+      "Actions": [],
+      "EnableAuto": false,
+      "Delay": 0.0
+    }
+  ],
+  "IsMoveable": false,
+  "OnEndofDialogueActions": []
+}
