@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class GunController : MonoBehaviour
     [SerializeField] Transform muzzle;
     [SerializeField] private ProjectileSeed seedProjectile;
     
-    [Space(5)] [Header("씨앗 상태")]
-    public bool haveSeed;
+    //씨앗 상태
+    [NonSerialized] public bool HaveSeed;
     
     private void Update()
     {
@@ -24,7 +25,7 @@ public class GunController : MonoBehaviour
     private void Shoot()
     {
         if (!Input.GetKeyDown(KeyCode.V)) return;
-        if (!haveSeed) return;
+        if (!HaveSeed) return;
 
         SetSeedStatus(false);
         Instantiate(seedProjectile, muzzle.position, transform.rotation);
@@ -35,9 +36,9 @@ public class GunController : MonoBehaviour
     /// </summary>
     public void SetSeedStatus(bool seedStatus)
     {
-        haveSeed = seedStatus;
+        HaveSeed = seedStatus;
         
         //씨앗 UI 변경
-        UIManager.Instance.SetSeedGun(haveSeed);
+        UIManager.Instance.SetSeedGun(HaveSeed);
     }
 }
