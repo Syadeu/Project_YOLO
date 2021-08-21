@@ -18,6 +18,7 @@ namespace Syadeu.Mono
         {
             public bool UseName = true;
             public string CameraTargetName = string.Empty;
+            public Vector3 MoveOffset = Vector3.zero;
 
             [Space]
             public CameraManager.CameraTarget CameraTarget;
@@ -45,6 +46,7 @@ namespace Syadeu.Mono
                 CameraManager.Instance.SetCameraTarget(transition.CameraTarget);
             }
 
+            transform.position += transition.MoveOffset;
             m_Stay = true;
         }
         private void OnTriggerExit(Collider other)

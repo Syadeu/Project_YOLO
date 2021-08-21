@@ -26,6 +26,7 @@ namespace Syadeu.Mono
         {
             public string Name = "NewTarget";
             public TransformWrapper m_Target = null;
+            public Vector3 m_Offset = Vector3.zero;
             public float m_Zoom = 13;
         }
 
@@ -111,11 +112,12 @@ namespace Syadeu.Mono
                 if (m_CamTarget == null) return;
 
                 Vector3 targetPos = m_CamTarget.m_Target.Position;
-                targetPos.z = m_Origin.z;
+                targetPos += m_CamTarget.m_Offset;
+                //targetPos.z = m_Origin.z;
 
                 transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * m_CameraSpeed);
 
-                m_Camera.orthographicSize = Mathf.Lerp(m_Camera.orthographicSize, m_CamTarget.m_Zoom, Time.deltaTime * m_CameraSpeed);
+                //m_Camera.orthographicSize = Mathf.Lerp(m_Camera.orthographicSize, m_CamTarget.m_Zoom, Time.deltaTime * m_CameraSpeed);
             }
         }
 

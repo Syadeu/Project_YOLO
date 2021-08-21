@@ -17,21 +17,4 @@ namespace Syadeu
             });
         }
     }
-
-    public sealed class CameraToTargetEntity : YOLOActionBase
-    {
-        public override void Process(EntityData<IEntityData> entity)
-        {
-            if (!(entity.Target is EntityBase entityBase))
-            {
-                $"Object entity 가 아님".ToLogError();
-                return;
-            }
-
-            CameraManager.Instance.SetCameraTarget(new CameraManager.CameraTarget
-            {
-                m_Target = new CameraManager.TransformWrapper(entityBase.transform)
-            });
-        }
-    }
 }
