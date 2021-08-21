@@ -18,30 +18,30 @@ namespace Syadeu
 
         private ActorProvider<TestNPC> ActorProvider;
 
-        private IEnumerator Start()
-        {
-            CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
-            yield return new WaitForSeconds(2);
+        //private IEnumerator Start()
+        //{
+        //    CoreSystem.WaitInvoke(() => YOLOPresentationProvider.Instance.ActorSystem != null, RegisterActor);
+        //    yield return new WaitForSeconds(2);
 
-            while (PlayerController.ActorProvider == null ||
-                !PlayerController.ActorProvider.IsInitialized)
-            {
-                //$"{PlayerController.ActorProvider.Entity.Name}:{PlayerController.ActorProvider.Entity.IsValid()}: {PlayerController.ActorProvider.IsInitialized}".ToLog();
-                yield return null;
-            }
+        //    while (PlayerController.ActorProvider == null ||
+        //        !PlayerController.ActorProvider.IsInitialized)
+        //    {
+        //        //$"{PlayerController.ActorProvider.Entity.Name}:{PlayerController.ActorProvider.Entity.IsValid()}: {PlayerController.ActorProvider.IsInitialized}".ToLog();
+        //        yield return null;
+        //    }
 
-            YOLOPresentationProvider.Instance.GameSystem.StartConversation(m_DialogueID, PlayerController.ActorProvider.Entity, ActorProvider.Entity);
+        //    YOLOPresentationProvider.Instance.GameSystem.StartConversation(m_DialogueID, PlayerController.ActorProvider.Entity, ActorProvider.Entity);
 
-            //ActorProvider.TryConversation(m_DialogueID, out var handler, PlayerController.ActorProvider.Entity);
+        //    //ActorProvider.TryConversation(m_DialogueID, out var handler, PlayerController.ActorProvider.Entity);
 
-            //handler.StartConversation(Conversation);
-            //yield return null;
+        //    //handler.StartConversation(Conversation);
+        //    //yield return null;
 
-            //while (handler.MoveNext())
-            //{
-            //    yield return new WaitForSeconds(1);
-            //}
-        }
+        //    //while (handler.MoveNext())
+        //    //{
+        //    //    yield return new WaitForSeconds(1);
+        //    //}
+        //}
 
         private void Conversation(EntityData<YOLOActorEntity> entity, string text)
         {
