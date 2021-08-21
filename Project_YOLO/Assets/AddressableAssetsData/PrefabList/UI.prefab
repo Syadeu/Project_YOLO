@@ -1739,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConversationUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5852926183901522748, guid: 2e80cc5196c4d8141b321a0c6e36ecc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e80cc5196c4d8141b321a0c6e36ecc9, type: 3}
 --- !u!224 &2468472502281633639 stripped
