@@ -32,6 +32,8 @@ namespace Syadeu
 
         public bool IsInConversation { get; private set; } = false;
 
+        public Transform m_CurrentPoint = null;
+
         private EventSystem m_EventSystem;
         private RenderSystem m_RenderSystem;
         private WorldCanvasSystem m_WorldCanvasSystem;
@@ -235,6 +237,12 @@ namespace Syadeu
                 if (!m_ConversationUI.Equals(Entity<IEntity>.Empty) &&
                     m_ConversationUI.IsValid()) m_EntitySystem.DestroyEntity(m_ConversationUI);
             }
+        }
+
+        public Vector3 GetLastSavePosition()
+        {
+            if (m_CurrentPoint == null) return Vector3.zero;
+            return m_CurrentPoint.position;
         }
     }
 }
