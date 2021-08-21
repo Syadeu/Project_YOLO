@@ -29,6 +29,18 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: e6c1300000ad781429af859b6803e2c9
+    m_Address: Assets/AddressableAssetsData/PrefabList/New Animation.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 7400000, guid: e6c1300000ad781429af859b6803e2c9, type: 2}
+    m_TargetAsset: {fileID: 7400000, guid: e6c1300000ad781429af859b6803e2c9, type: 2}
+  - m_GUID: 475c6c7b5e46ee749ae2a2267756d2b4
+    m_Address: Assets/AddressableAssetsData/PrefabList/TestCube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d77e5f636a97166459faaaf99808cf33, type: 2}
   m_SchemaSet:

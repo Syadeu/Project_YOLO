@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syadeu.Presentation;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,33 @@ namespace Syadeu.Mono
         public sealed class CameraTarget
         {
             public string Name = "NewTarget";
-            public Transform m_Target = null;
+            public TransformWrapper m_Target = null;
             public float m_Zoom = 13;
+        }
+
+        [Serializable]
+        public sealed class TransformWrapper
+        {
+            [SerializeField] private Transform tr;
+            [NonSerialized] private ITransform Tr;
+
+            public Vector3 Position
+            {
+                get
+                {
+                    if (tr == null) return Tr.position;
+                    return tr.position;
+                }
+            }
+
+            public TransformWrapper(Transform tr)
+            {
+                this.tr = tr;
+            }
+            public TransformWrapper(ITransform tr)
+            {
+                this.Tr = tr;
+            }
         }
 
         #endregion
@@ -84,7 +110,7 @@ namespace Syadeu.Mono
             {
                 if (m_CamTarget == null) return;
 
-                Vector3 targetPos = m_CamTarget.m_Target.position;
+                Vector3 targetPos = m_CamTarget.m_Target.Position;
                 targetPos.z = m_Origin.z;
 
                 transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * m_CameraSpeed);
@@ -99,7 +125,11 @@ namespace Syadeu.Mono
         }
         public void SetCameraTarget(string targetName)
         {
-            CameraTarget target = m_CachedRoomTargets[targetName];
+            if (!m_CachedRoomTargets.TryGetValue(targetName, out var target))
+            {
+                $"{targetName} 은 카메라에 존재하지 않는 타겟!".ToLogError();
+                return;
+            }
             m_CamTarget = target;
         }
     }

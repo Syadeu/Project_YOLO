@@ -1,0 +1,19 @@
+{
+  "Name": "TestCube",
+  "Hash": 6652394503930531680,
+  "Attributes": [
+    2791449310918304292
+  ],
+  "Prefab": 3,
+  "Center": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "Size": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "EnableCull": false
+}

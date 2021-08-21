@@ -7,7 +7,9 @@
       "Messages": [
         "좋아... 이걸 이렇게 하면 어떨까?"
       ],
-      "Actions": [],
+      "Actions": [
+        4023741704695861456
+      ],
       "EnableAuto": false,
       "Delay": 0.0
     },
@@ -93,5 +95,7 @@
     }
   ],
   "IsMoveable": false,
-  "OnEndofDialogueActions": []
+  "OnEndofDialogueActions": [
+    7367806392720516931
+  ]
 }
