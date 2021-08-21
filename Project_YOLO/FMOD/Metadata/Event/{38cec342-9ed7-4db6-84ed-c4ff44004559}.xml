@@ -139,7 +139,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{70004ee2-fc29-4b75-8903-2bb14abd5a00}">
 		<property name="volume">
-			<value>-19.5</value>
+			<value>-5.5</value>
 		</property>
 		<property name="name">
 			<value>Ambience</value>
@@ -193,6 +193,7 @@
 	<object class="MixerBusEffectChain" id="{c4b9b8e9-db09-4cc4-a5a1-1a0525147d6b}">
 		<relationship name="effects">
 			<destination>{dfc1264e-8ff1-4acc-97c5-0a9188791e0b}</destination>
+			<destination>{9d4cdf6a-79dd-437d-bc02-52bb2dfba638}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3e7963c5-8b1a-4ca2-bba2-fed8939cb73b}" />
@@ -226,4 +227,12 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{dfc1264e-8ff1-4acc-97c5-0a9188791e0b}" />
+	<object class="ThreeEQEffect" id="{9d4cdf6a-79dd-437d-bc02-52bb2dfba638}">
+		<property name="highGain">
+			<value>-32</value>
+		</property>
+		<property name="highCrossover">
+			<value>3000</value>
+		</property>
+	</object>
 </objects>
