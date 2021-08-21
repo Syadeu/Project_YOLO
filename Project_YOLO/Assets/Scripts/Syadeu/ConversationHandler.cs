@@ -37,6 +37,16 @@ namespace Syadeu
             m_OnConversation = onConversation;
 
             //SetSpeaker(0);
+            for (int i = 0; i < m_Dialogue.OnStartDialogueActions.Length; i++)
+            {
+                if (!m_Dialogue.OnStartDialogueActions[i].IsValid())
+                {
+                    $"{m_Dialogue.Name}의 {i}번째 OnStartDialogueActions 이 유효하지않음".ToLogError();
+                    continue;
+                }
+
+                m_Dialogue.OnStartDialogueActions[i].GetObject().Process(FindSpeaker(m_Dialogue.m_Texts[0].Principle).Idx);
+            }
 
             //m_OnConversation.Invoke(CurrentSpeaker, CurrentText);
             if (!MoveNext(out delay))
@@ -108,6 +118,12 @@ namespace Syadeu
         {
             for (int i = 0; i < m_Dialogue.OnEndofDialogueActions?.Length; i++)
             {
+                if (!m_Dialogue.OnEndofDialogueActions[i].IsValid())
+                {
+                    $"{m_Dialogue.Name}의 {i}번째 OnEndofDialogueActions 이 유효하지않음".ToLogError();
+                    continue;
+                }
+
                 m_Dialogue.OnEndofDialogueActions[i].GetObject().Process(FindSpeaker(m_Dialogue.m_Texts[0].Principle).Idx);
             }
 
