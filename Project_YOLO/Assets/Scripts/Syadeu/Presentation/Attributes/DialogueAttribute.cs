@@ -33,19 +33,24 @@ namespace Syadeu
             handler = null;
             if (id.AttributeHash.Equals(0))
             {
-                "ID Hash 가 지정되지 않은 DialogueID".ToLog(id);
+                "ID Hash 가 지정되지 않은 DialogueID".ToLogError(id);
                 return false;
             }
 
             DialogueReference dialogue = GetDialogue(id);
-            if (dialogue == null || dialogue.m_Texts.Length == 0)
+            if (dialogue == null)
             {
-                "아무 대화도 없음".ToLog();
+                "대화를 찾을 수 없음".ToLogError();
+                return false;
+            }
+            if (dialogue.m_Texts.Length == 0)
+            {
+                "아무 대화도 없음".ToLogError();
                 return false;
             }
             else if (!dialogue.m_Texts[0].Principle.m_Hash.Equals(Parent.Target.Hash))
             {
-                "대화 주체가 아님".ToLog();
+                "대화 주체가 아님".ToLogError();
                 return false;
             }
 

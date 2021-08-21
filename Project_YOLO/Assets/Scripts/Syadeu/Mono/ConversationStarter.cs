@@ -18,6 +18,9 @@ namespace Syadeu.Mono
         public TriggerType m_TriggerType = 0;
         public DialogueID m_DialogueID;
         public ActorRegistryComponent[] m_Entries = Array.Empty<ActorRegistryComponent>();
+        public bool m_TriggerOnce = true;
+
+        public bool Triggered { get; private set; } = false;
 
         private IEnumerator Start()
         {
@@ -67,9 +70,13 @@ namespace Syadeu.Mono
 
         private void StartConversation()
         {
+            if (m_TriggerOnce && Triggered) return;
+
             var temp = m_Entries.Select((other) => other.ActorProvider.Entity).ToArray();
             YOLOPresentationProvider.Instance.GameSystem.StartConversation(m_DialogueID,
                 temp[0], temp);
+
+            Triggered = true;
         }
     }
 }

@@ -232,7 +232,8 @@ namespace Syadeu
             }
             void DestroyUI()
             {
-                if (!m_ConversationUI.Equals(Entity<IEntity>.Empty)) m_EntitySystem.DestroyEntity(m_ConversationUI);
+                if (!m_ConversationUI.Equals(Entity<IEntity>.Empty) &&
+                    m_ConversationUI.IsValid()) m_EntitySystem.DestroyEntity(m_ConversationUI);
             }
         }
     }
