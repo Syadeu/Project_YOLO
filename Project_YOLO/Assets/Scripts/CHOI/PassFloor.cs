@@ -7,13 +7,15 @@ public class PassFloor : MonoBehaviour
     [Space(5)] [Header("기본 정보")]
     [SerializeField] private Collider collider;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
+        if (collider.enabled) return;
         if (!other.gameObject.CompareTag("Player")) return;
         
         if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f))
         {
             collider.enabled = true;
+            PlayerController.instance.onPassFloors.Add(collider);
         }
     }
     
@@ -21,14 +23,16 @@ public class PassFloor : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        if (other.transform.position.y > transform.position.y + (transform.localScale.y * 0.5f))
+        if (!PlayerController.instance.onPassFloors.Contains(collider) && 
+            other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f))
         {
             collider.enabled = true;
+            PlayerController.instance.onPassFloors.Add(collider);
         }
         else
         {
-            PlayerController.instance.onPassFloors.Remove(collider);
             collider.enabled = false;
+            PlayerController.instance.onPassFloors.Remove(collider);
         }
     }
 }

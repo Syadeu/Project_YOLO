@@ -27,7 +27,7 @@ public class GunController : MonoBehaviour
         if (!haveSeed) return;
 
         SetSeedStatus(false);
-        Instantiate(seedProjectile, muzzle.position, PlayerController.instance.transform.rotation);
+        Instantiate(seedProjectile, muzzle.position, transform.rotation);
     }
     
     /// <summary>

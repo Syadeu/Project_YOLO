@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 5550549248094140058}
   - component: {fileID: 5550549248094140056}
   - component: {fileID: 5550549248094140057}
-  - component: {fileID: 5550549248094140059}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -211,21 +210,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5550549248094140059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550549248094140036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a30530e945b524fbeea4ffffa5bd44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muzzle: {fileID: 5550549249641729292}
-  seedProjectile: {fileID: 8656029260621086237, guid: 545a15ac36dd4d544ba7c35e362b594d, type: 3}
-  haveSeed: 0
 --- !u!1 &5550549248246056855
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,11 +5129,11 @@ Transform:
   m_GameObject: {fileID: 5550549248259390534}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7272718, y: 2.7272725, z: 2.7272718}
+  m_LocalScale: {x: 2.7272716, y: 2.7272725, z: 2.7272716}
   m_Children:
   - {fileID: 5550549248246056854}
   m_Father: {fileID: 5550549248704734799}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5550549248259390532
 ParticleSystem:
@@ -10247,6 +10231,8 @@ GameObject:
   - component: {fileID: 1559753645}
   - component: {fileID: 5550549248704734793}
   - component: {fileID: 5550549248704734795}
+  - component: {fileID: 1064490970}
+  - component: {fileID: 1064490971}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10271,7 +10257,6 @@ Transform:
   - {fileID: 5550549249893672845}
   - {fileID: 5550549249080405215}
   - {fileID: 5550549249033331197}
-  - {fileID: 5550549249090429542}
   - {fileID: 5550549248259390555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -10302,7 +10287,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550549248704734836}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 73921c672ac650047975e6e00100cdbe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -10336,26 +10321,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f103e960e779ab34e9ed206bcbbd8858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueprintCount: 0
   inputPause: 0
-  rigidbody: {fileID: 5550549248704734793}
-  collider: {fileID: 0}
   moveSpeed: 0.15
   onPassFloors: []
   jumpPower: 30
-  isJumping: 0
   downJumpAvailable: 0
-  gun: {fileID: 5550549248094140059}
+  isJumping: 0
+  booster: {fileID: 1064490970}
+  gun: {fileID: 1064490971}
+  blueprintCount: 0
+  m_ActorID: {fileID: 11400000, guid: 497e5c5e3de6beb49828f76c9a8586b2, type: 2}
+  m_Skills: []
+--- !u!114 &1064490970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550549248704734836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6f237d34f064849b35f0913f0c9bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVelocity: 15
   haveBooster: 0
   boosterPower: 70
   boosterCooltime: 2
   boosterAvailable: 0
   boosterEffect: {fileID: 5550549248259390534}
-  animator: {fileID: 5550549248704734792}
-  animMove: 0
-  animJump: 0
-  m_ActorID: {fileID: 0}
-  m_Skills: []
+--- !u!114 &1064490971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550549248704734836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a30530e945b524fbeea4ffffa5bd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzle: {fileID: 5550549249641729292}
+  seedProjectile: {fileID: 8656029260621086237, guid: 545a15ac36dd4d544ba7c35e362b594d, type: 3}
+  haveSeed: 0
 --- !u!1 &5550549248793372496
 GameObject:
   m_ObjectHideFlags: 0
@@ -10628,63 +10637,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.8881492, y: 0.068589374, z: -0.00000025331974}
     m_Extent: {x: 0.310584, y: 0.22303663, z: 0.21829087}
   m_DirtyAABB: 0
---- !u!1 &5550549249090429543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5550549249090429542}
-  - component: {fileID: 1346032648}
-  - component: {fileID: 5550549249090429541}
-  m_Layer: 0
-  m_Name: BodyTrigger
-  m_TagString: PassTrigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5550549249090429542
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550549249090429543}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5550549248704734799}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1346032648
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550549249090429543}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.4, z: 1}
-  m_Center: {x: 0, y: 1.2, z: 0}
---- !u!114 &5550549249090429541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550549249090429543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c017041173f614cbab40d6fd9e57e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5550549249134489607
 GameObject:
   m_ObjectHideFlags: 0
