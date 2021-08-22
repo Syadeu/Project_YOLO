@@ -199,6 +199,20 @@ public class PlayerController : MonoBehaviour
         _isJumping = false;
     }
 
+    //사망
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Enemy")) return;
+
+        Dead();
+    }
+    
+    public void Dead()
+    {
+        var pos = YOLOPresentationProvider.Instance.GameSystem.GetLastSavePosition();
+        transform.position = pos;
+    }
+
     /// <summary>
     /// 애니메이션 설정
     /// </summary>
