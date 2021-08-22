@@ -24,7 +24,7 @@ public class GunController : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        if (!Input.GetKeyDown(KeyCode.V)) return;
+        if (!Input.GetKeyDown(KeyCode.LeftControl) && !Input.GetKeyDown(KeyCode.A) && !Input.GetKeyDown(KeyCode.V)) return;
         if (!HaveSeed) return;
 
         SetSeedStatus(false);
