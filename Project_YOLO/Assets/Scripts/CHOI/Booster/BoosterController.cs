@@ -32,9 +32,12 @@ public class BoosterController : MonoBehaviour
     [NonSerialized] public bool HaveBooster;
     [NonSerialized] public bool boosterAvailable;
 
-    private void Start()
+    private IEnumerator Start()
     {
         _rigidbody = gameObject.GetComponent<Rigidbody>();
+
+        yield return new WaitUntil(() => UIManager.HasInstance);
+        UIManager.Instance.EnableBoostGage(false);
     }
 
     public void Booster(BoosterType type, Vector3 force)
@@ -85,6 +88,7 @@ public class BoosterController : MonoBehaviour
     private void BoosterAvailable()
     {
         //부스터 게이지 UI 적용
+        UIManager.Instance.EnableBoostGage(true);
         UIManager.Instance.SetBoostGage(1);
 
         boosterAvailable = true;

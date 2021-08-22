@@ -15,8 +15,10 @@ public class GunController : MonoBehaviour
 
     public ObValue<bool> HasGun = new ObValue<bool>(ObValueDetection.Changed);
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => UIManager.HasInstance);
+
         UIManager.Instance.EnableSeedGun(false);
         HasGun.OnValueChange += HasGun_OnValueChange;
     }
