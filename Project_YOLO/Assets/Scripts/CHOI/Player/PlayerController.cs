@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         var tag = other.gameObject.tag;
         if (tag != "Floor" && tag != "PassFloor") return;
-        if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f)) return;;
+        //if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f)) return;;
         
         _downJumpAvailable = other.gameObject.tag switch
         {
@@ -197,6 +197,20 @@ public class PlayerController : MonoBehaviour
         _animator.Play("JumpLanding");
 
         _isJumping = false;
+    }
+
+    //사망
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Enemy")) return;
+
+        Dead();
+    }
+    
+    public void Dead()
+    {
+        var pos = YOLOPresentationProvider.Instance.GameSystem.GetLastSavePosition();
+        transform.position = pos;
     }
 
     /// <summary>

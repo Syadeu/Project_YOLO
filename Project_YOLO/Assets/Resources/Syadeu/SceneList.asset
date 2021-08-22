@@ -22,10 +22,10 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 47d1c40eeff4b0b4e9a13e13c2573c76, type: 3}
     scenePath: Assets/Scenes/Start.unity
   Scenes:
-  - sceneAsset: {fileID: 102900000, guid: 0849dbe4a2d30f346aca0534932253ba, type: 3}
-    scenePath: Assets/Scenes/MapDesign.unity
   - sceneAsset: {fileID: 102900000, guid: 0c33beb5a2787404a9482a6c5913426d, type: 3}
     scenePath: Assets/Scenes/MapDesign_TestSyadeu.unity
+  - sceneAsset: {fileID: 102900000, guid: 0849dbe4a2d30f346aca0534932253ba, type: 3}
+    scenePath: Assets/Scenes/MapDesign.unity
   - sceneAsset: {fileID: 102900000, guid: f7a5bcf9f3cd9a0409a4796433bf8401, type: 3}
     scenePath: Assets/Scenes/YOLOMap.unity
   - sceneAsset: {fileID: 102900000, guid: 48322208c254faa449de371c982ab158, type: 3}

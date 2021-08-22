@@ -21,6 +21,10 @@ public class UIManager : MonoManager<UIManager>
 
     public Canvas WorldCanvas => m_WorldCanvas;
 
+    public void EnableBoostGage(bool enable)
+    {
+        m_BoostGageUI.gameObject.SetActive(enable);
+    }
     /// <summary>
     /// UI 의 부스트 게이지 퍼센트를 설정합니다.
     /// </summary>

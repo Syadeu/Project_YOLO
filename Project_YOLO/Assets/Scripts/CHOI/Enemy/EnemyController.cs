@@ -77,6 +77,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Initialized()
+    {
+        throw new NotImplementedException();
+    }
+
     private void FixedUpdate()
     {
         if (!pause)
@@ -148,8 +153,8 @@ public class EnemyController : MonoBehaviour
         if (type.Equals(EnemyType.AntQueen))
         {
             AnimationSet(ref _animMove, "Run", false);
-                
-            Debug.Log("GameOver");
+            
+            PlayerController.instance.Dead();
         }
         else if (type.Equals(EnemyType.Meddugi_King))
         {

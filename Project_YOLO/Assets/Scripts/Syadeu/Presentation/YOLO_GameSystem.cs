@@ -165,6 +165,10 @@ namespace Syadeu
         private IEnumerator ConversationUpdate(ConversationHandler handler)
         {
             IsInConversation = true;
+            if (!handler.Dialogue.IsMoveable)
+            {
+                PlayerController.instance.inputPause = true;
+            }
             float timer = 0;
             
             handler.StartConversation(Conversation, out float delay);
@@ -198,7 +202,8 @@ namespace Syadeu
                     if (!m_ConversationUI.Equals(Entity<IEntity>.Empty))
                     {
                         var prevUI = m_ConversationUI.GetAttribute<ConversationUIAttribute>();
-                        if (prevUI.UIComponent.IsTexting)
+                        if (prevUI.UIComponent != null &&
+                            prevUI.UIComponent.IsTexting)
                         {
                             prevUI.UIComponent.Skip();
                             skipped = true;
@@ -208,6 +213,7 @@ namespace Syadeu
                     {
                         "대화 끝 2".ToLog();
                         DestroyUI();
+                        PlayerController.instance.inputPause = false;
                         IsInConversation = false;
                         yield break;
                     }
