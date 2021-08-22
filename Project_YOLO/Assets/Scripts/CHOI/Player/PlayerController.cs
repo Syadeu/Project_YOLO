@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour
         if (!other.gameObject.CompareTag("Enemy")) return;
 
         Dead();
+        other.GetComponentInParent<EnemyController>().Initialized();
     }
     
     public void Dead()
