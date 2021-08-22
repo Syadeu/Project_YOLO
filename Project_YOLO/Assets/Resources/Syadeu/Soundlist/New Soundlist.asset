@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e407b58fc6dc74bbd256e12767ee1b, type: 3}
+  m_Name: New Soundlist
+  m_EditorClassIdentifier: 
+  listName: SoundtrackFol
+  listIndex: 0
+  fSounds:
+  - name: Soundtrack
+    index: 1
+    clipCount: 0
+    eventClips:
+    - type: 0
+      Event: event:/Background
+      PlayEvent: 0
+      StopEvent: 0
+      AllowFadeout: 1
+      TriggerOnce: 0
+      Preload: 0
+      Params: []
+      OverrideAttenuation: 0
+      OverrideMinDistance: 0
+      OverrideMaxDistance: 0

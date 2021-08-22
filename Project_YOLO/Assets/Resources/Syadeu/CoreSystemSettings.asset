@@ -20,7 +20,7 @@ MonoBehaviour:
   m_EnableAutoStaticInitialize: 0
   m_AutoInitializeTargetAssembly:
   - Assembly-CSharp
-  m_DisplayLogChannel: 0
+  m_DisplayLogChannel: 256
   m_PMErrorAutoFix: 1
   m_FMODMemoryBlock: 512
   m_EnableQueryLog: 0

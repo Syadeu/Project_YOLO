@@ -2,7 +2,9 @@
   "Name": "#1_2_FindRecipe",
   "Hash": 828757653448173682,
   "OnStartDialogueActions": [],
-  "OnEndofDialogueActions": [],
+  "OnEndofDialogueActions": [
+    1882526951072056632
+  ],
   "Texts": [
     {
       "Principle": 7785164833589502067,

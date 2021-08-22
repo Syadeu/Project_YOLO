@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FMODSettings
   m_EditorClassIdentifier: 
   m_DisplayLogs: 0
-  m_SoundLists: []
+  m_SoundLists:
+  - {fileID: 11400000, guid: 90997c1679edb554d91e9b981fb20525, type: 2}
   m_SoundRooms: []
   m_LocalizeBankNames: []
