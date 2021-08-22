@@ -202,7 +202,8 @@ namespace Syadeu
                     if (!m_ConversationUI.Equals(Entity<IEntity>.Empty))
                     {
                         var prevUI = m_ConversationUI.GetAttribute<ConversationUIAttribute>();
-                        if (prevUI.UIComponent.IsTexting)
+                        if (prevUI.UIComponent != null &&
+                            prevUI.UIComponent.IsTexting)
                         {
                             prevUI.UIComponent.Skip();
                             skipped = true;
