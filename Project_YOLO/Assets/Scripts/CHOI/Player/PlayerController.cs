@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         var tag = other.gameObject.tag;
         if (tag != "Floor" && tag != "PassFloor") return;
-        if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f)) return;;
+        //if (other.transform.position.y >= transform.position.y + (transform.localScale.y * 0.5f)) return;;
         
         _downJumpAvailable = other.gameObject.tag switch
         {
