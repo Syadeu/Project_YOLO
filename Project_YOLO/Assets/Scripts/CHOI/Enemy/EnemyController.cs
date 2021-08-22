@@ -49,6 +49,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _detectionMaxDistance = 10;
     private RaycastHit _hit;
     
+    //초기화 값
+    public Vector3 _initPosition;
+    private bool _init_RandomMove;
+    private bool _init_RushAvailable;
+    private bool _init_JumpAttackAvailable;
+    
     //리지드바디
     private Rigidbody _rigidbody;
 
@@ -62,6 +68,7 @@ public class EnemyController : MonoBehaviour
     
     private IEnumerator _rush;
     private IEnumerator _jumpAttack;
+    private IEnumerator _stun;
     
     private void Awake()
     {
@@ -77,9 +84,67 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        //초기화 값 저장
+        _initPosition = transform.position;
+        _init_RandomMove = randomMove;
+        _init_RushAvailable = rushAvailable;
+        _init_JumpAttackAvailable = jumpAttackAvailable;
+    }
+
     public void Initialized()
     {
-        throw new NotImplementedException();
+        Debug.Log("ddddddd");
+        
+        pause = true;
+
+        //코루틴 끄기
+        if (_rush != null)
+        {
+            StopCoroutine(_rush);
+        }
+        
+        if (_jumpAttack != null)
+        {
+            StopCoroutine(_jumpAttack);
+        }
+        
+        if (_stun != null)
+        {
+            StopCoroutine(_stun);
+        }
+
+        //값 초기화
+        currentHealth = maxHealth;
+        randomMove = _init_RandomMove;
+        rushAvailable = _init_RushAvailable;
+        jumpAttackAvailable = _init_JumpAttackAvailable;
+        
+        //리지드바디 초기화
+        _rigidbody.velocity = Vector3.zero;
+        if (_rigidbody.IsSleeping())
+        {
+            _rigidbody.WakeUp();
+        }
+        
+        //애니메이션 초기화
+        AnimationSet(ref _animReady, "Ready", false);
+        AnimationSet(ref _animJumpAttack, "JumpAttack", false);
+        AnimationSet(ref _animRush, "Rush", false);
+        AnimationSet(ref _animMove, "Run", false);
+        AnimationSet(ref _animStun, "Stun", false);
+        
+        //포지션 초기화
+        transform.position = _initPosition;
+        
+        pause = false;
+        
+        //랜덤 포지션 시작
+        if (randomMove)
+        {
+            InvokeRepeating(nameof(SetRandomPosition), 0, repeatRate);
+        }
     }
 
     private void FixedUpdate()
@@ -153,6 +218,9 @@ public class EnemyController : MonoBehaviour
         if (type.Equals(EnemyType.AntQueen))
         {
             AnimationSet(ref _animMove, "Run", false);
+            
+            //적 초기화
+            Initialized();;
             
             PlayerController.instance.Dead();
         }
@@ -362,7 +430,8 @@ public class EnemyController : MonoBehaviour
                 _rigidbody.Sleep();
 
                 //스턴 시작
-                StartCoroutine(_Stun());
+                _stun = _Stun();
+                StartCoroutine(_stun);
             }
             else
             {
