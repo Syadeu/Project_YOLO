@@ -1,3 +1,4 @@
+using Syadeu.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,20 @@ public class GunController : MonoBehaviour
     
     //씨앗 상태
     [NonSerialized] public bool HaveSeed;
-    
+
+    public ObValue<bool> HasGun = new ObValue<bool>(ObValueDetection.Changed);
+
+    private void Start()
+    {
+        UIManager.Instance.EnableSeedGun(false);
+        HasGun.OnValueChange += HasGun_OnValueChange;
+    }
+
+    private void HasGun_OnValueChange(bool current, bool target)
+    {
+        UIManager.Instance.EnableSeedGun(target);
+    }
+
     private void Update()
     {
         if (PlayerController.instance.inputPause) return;

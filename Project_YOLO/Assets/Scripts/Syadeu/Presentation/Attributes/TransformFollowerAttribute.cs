@@ -12,7 +12,7 @@ namespace Syadeu
     [AttributeAcceptOnly(typeof(EntityBase))]
     public sealed class TransformFollowerAttribute : AttributeBase
     {
-        [JsonIgnore] public float FollowSpeed = 4;
+        [JsonProperty] public float FollowSpeed = 4;
 
         [JsonIgnore] public bool Set = false;
         [JsonIgnore] public Transform Target = null;

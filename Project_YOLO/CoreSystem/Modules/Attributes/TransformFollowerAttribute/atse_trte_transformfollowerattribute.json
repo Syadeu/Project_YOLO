@@ -1,4 +1,5 @@
 {
   "Name": "TransformFollowerAttribute",
-  "Hash": 7211053331762027160
+  "Hash": 7211053331762027160,
+  "FollowSpeed": 8.0
 }

@@ -12,6 +12,7 @@ namespace Syadeu
         private EntityData<YOLOActorEntity>[] m_JoinedEntities = Array.Empty<EntityData<YOLOActorEntity>>();
         private Action<EntityData<YOLOActorEntity>, string> m_OnConversation;
 
+        public DialogueReference Dialogue => m_Dialogue;
         public bool Started { get; private set; } = false;
         public EntityData<YOLOActorEntity> CurrentSpeaker { get; private set; }
         public string CurrentText { get; private set; }
